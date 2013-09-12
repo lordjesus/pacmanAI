@@ -1,5 +1,8 @@
 package pacman.entries.pacman;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import pacman.controllers.Controller;
 import pacman.game.Constants.DM;
 import pacman.game.Constants.GHOST;
@@ -10,10 +13,12 @@ public class FSMPacMan extends Controller<MOVE> {
 
 	STATE currentState = STATE.EAT_PILL;
 	int numberOfLives = 0;
+	MovingWindowList<Integer> lastMoves = new MovingWindowList<>(10);
 
 	@Override
 	public MOVE getMove(Game game, long timeDue) {
 		int current = game.getPacmanCurrentNodeIndex();
+		lastMoves.put(current);
 
 		// Determine what state pacman is in
 		GetCurrentState(game, current); 
@@ -36,7 +41,28 @@ public class FSMPacMan extends Controller<MOVE> {
 		return MOVE.NEUTRAL;
 	}
 
+	private boolean isStuck() {
+		if (lastMoves.size() > 3) {
+			List<Integer> moves = lastMoves.asList();
+			List<Integer> usedMoves = new ArrayList<Integer>();
+			for (int pos : moves) {
+				if (!usedMoves.contains(pos)) {
+					usedMoves.add(pos);
+				}
+			}
+			if (usedMoves.size() < 3) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private MOVE GetNextMove(Game game, int current) {
+		// Check if PacMan is stuck
+		if (isStuck()) { 
+//			System.out.println("Was stuck");
+			return MOVE.NEUTRAL;
+		}
 		MOVE myMove = MOVE.NEUTRAL;
 		// Determine action based on state
 		switch (currentState) {
@@ -63,7 +89,7 @@ public class FSMPacMan extends Controller<MOVE> {
 	private void GetCurrentState(Game game, int current) {
 		STATE startState = currentState;
 		do {
-			//			System.out.println("CurrentState: " + currentState.name());
+//						System.out.println("CurrentState: " + currentState.name());
 			startState = currentState;
 
 			int edibleTime = 0;
@@ -196,7 +222,7 @@ public class FSMPacMan extends Controller<MOVE> {
 
 	private MOVE Flee(Game game, int current) {
 		if (true) {
-			Search search = new Search(game, 100, current);
+			Search search = new Search(game, 100, current, true);
 			return search.BeginSearch();
 		} else {
 			GHOST closest = null;
@@ -223,7 +249,7 @@ public class FSMPacMan extends Controller<MOVE> {
 
 	private MOVE EatPill(Game game, int current) {
 		if (true) {
-			Search search = new Search(game, 50, current);
+			Search search = new Search(game, 50, current, false);
 			return search.BeginSearch();
 		} else {
 			int[] activePills = game.getActivePillsIndices();

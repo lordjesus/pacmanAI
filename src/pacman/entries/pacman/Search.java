@@ -13,13 +13,14 @@ import pacman.game.Constants.GHOST;
 import pacman.game.Constants.MOVE;
 
 public class Search {
-	int depthLimit, ghostLimit = 20;
+	int depthLimit, ghostLimit = 40;
 	Game game;
 	int startIndex;
-	HashMap<Integer, Integer> ghostMapping;
+	HashMap<Integer, Integer> ghostMapping = new HashMap<>();
 	public final static int GHOST_PENALTY = -500;
 	int closestGhostDist;
 	double ghostRatio;
+	boolean beAfraid; // true if avoid ghosts
 	
 	public Search(Game game, int depth, int startIndex) {
 		this.depthLimit = depth;
@@ -28,8 +29,18 @@ public class Search {
 		mapGhosts();
 	}
 	
+	public Search(Game game, int depth, int startIndex, boolean beAfraid) {
+		this.depthLimit = depth;
+		this.game = game;
+		this.startIndex = startIndex;
+		this.beAfraid = beAfraid;
+		if (beAfraid) {
+			mapGhosts();
+		}
+	}
+	
 	private void mapGhosts() {
-		ghostMapping = new HashMap<>();
+		
 		closestGhostDist = Integer.MAX_VALUE;
 		for(GHOST ghost : GHOST.values()) {
 			int index = game.getGhostCurrentNodeIndex(ghost);

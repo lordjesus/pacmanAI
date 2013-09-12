@@ -59,9 +59,9 @@ public class Executor
 		else {
 			double avg = 0;
 			int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
-			int iter = 200;
+			int iter = 1000;
 			for (int i = 0; i < iter; i++) {
-				int[] score = exec.runSingleExperiment(new FSMPacMan(), new StarterGhosts());
+				int[] score = exec.runSingleExperiment(new StarterPacMan(), new AggressiveGhosts());
 				System.out.println(i + ": Result = " + score[0] + ", level: " + (score[1] + 1));  
 				avg += score[0];
 				if (score[0] > max) {
