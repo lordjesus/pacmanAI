@@ -2,6 +2,7 @@ package pacman.entries.pacman;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import pacman.controllers.Controller;
 import pacman.game.Constants.DM;
@@ -15,6 +16,7 @@ public class FSMPacMan extends Controller<MOVE> {
 	int numberOfLives = 0;
 	MovingWindowList<Integer> lastMoves = new MovingWindowList<>(10);
 	int timeSinceLastEat;
+	Stack<Integer> movePath;
 
 	@Override
 	public MOVE getMove(Game game, long timeDue) {
@@ -36,7 +38,9 @@ public class FSMPacMan extends Controller<MOVE> {
 		}
 
 		//		System.out.println("CurrentState: " + currentState.name());
-
+		if (currentState != STATE.EAT_PILL) {
+			movePath = null;
+		}
 		return GetNextMove(game, current);
 	}
 
@@ -255,8 +259,20 @@ public class FSMPacMan extends Controller<MOVE> {
 
 	private MOVE EatPill(Game game, int current) {
 		if (true) {
-			Search search = new Search(game, 50, current, false, timeSinceLastEat);
-			return search.BeginSearch();
+			if (false) {
+				if (movePath == null || movePath.empty()) {
+					Search search = new Search(game, 50, current, false, timeSinceLastEat);
+					movePath = search.GetMoveList();
+//					System.out.println("Searching for path");
+				} 
+				int nextPos = movePath.pop();
+//				System.out.println("Go from " + current + " to " + nextPos);
+				return game.getNextMoveTowardsTarget(current, nextPos, DM.PATH); 
+			}
+			else {
+				Search search = new Search(game, 50, current, false, timeSinceLastEat);
+				return search.BeginSearch();
+			}
 		} else {
 			int[] activePills = game.getActivePillsIndices();
 			int closestPill = -1;
@@ -276,7 +292,7 @@ public class FSMPacMan extends Controller<MOVE> {
 
 	private MOVE EatGhost(Game game, int current) {
 		// Simple - eat closest ghost
-
+		
 		GHOST closest = null;
 		int minDistance=Integer.MAX_VALUE;
 

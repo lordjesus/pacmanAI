@@ -51,17 +51,17 @@ public class Executor
 		int numTrials=10;
 		exec.runExperiment(new RandomPacMan(),new RandomGhosts(),numTrials);
 		 */
-		boolean visual = true;
+		boolean visual = false;
 		if (visual) {
-			exec.runGameTimed(new FSMPacMan(),new StarterGhosts(),visual);
-//			exec.runGame(new FSMPacMan(),new StarterGhosts(),visual, 50);
+//			exec.runGameTimed(new FSMPacMan(),new StarterGhosts(),visual);
+			exec.runGame(new FSMPacMan(),new AggressiveGhosts(),visual, 5);
 		}
 		else {
 			double avg = 0;
 			int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
-			int iter = 1000;
+			int iter = 10;
 			for (int i = 0; i < iter; i++) {
-				int[] score = exec.runSingleExperiment(new StarterPacMan(), new AggressiveGhosts());
+				int[] score = exec.runSingleExperiment(new FSMPacMan(), new StarterGhosts());
 				System.out.println(i + ": Result = " + score[0] + ", level: " + (score[1] + 1));  
 				avg += score[0];
 				if (score[0] > max) {

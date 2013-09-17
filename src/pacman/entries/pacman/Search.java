@@ -2,15 +2,14 @@ package pacman.entries.pacman;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Set;
+import java.util.Stack;
 
-import pacman.game.Game;
 import pacman.game.Constants.DM;
 import pacman.game.Constants.GHOST;
 import pacman.game.Constants.MOVE;
+import pacman.game.Game;
 
 public class Search {
 	int depthLimit, ghostLimit = 40;
@@ -84,6 +83,76 @@ public class Search {
 		}
 	}
 	
+	public Stack<Integer> GetMoveList() {
+		Queue<Node> openList = new LinkedList<>();		
+		
+		Node start = new Node();
+		start.index = startIndex;
+		start.value = 0;
+		start.depth = 0;
+		
+		openList.add(start);
+		ArrayList<Node> exploredList = new ArrayList<>();
+		
+		ArrayList<Node> leafNodes = new ArrayList<Node>();
+		
+		while (!openList.isEmpty()) {
+			Node node = openList.poll();
+			exploredList.add(node);
+			
+			int[] nindices = game.getNeighbouringNodes(node.index);
+			for (int n : nindices) {
+				Node neighbour = new Node();
+				neighbour.index = n;
+				if (exploredList.contains(neighbour)) {
+					continue;
+				}
+				neighbour.depth = node.depth + 1;
+				neighbour.value = GetValueOfNode(neighbour.index);
+				neighbour.parent = node;
+				if (neighbour.value > -500) {
+					// Only add nodes that aren't a ghost
+					if (node.depth < depthLimit) {
+						openList.add(neighbour);
+					} else {
+						leafNodes.add(neighbour);
+					}
+				}
+			}
+		}		
+		
+		// Backtrack leaf nodes to get highest scoring path
+		Node bestLeaf = null;
+		double bestValue = Integer.MIN_VALUE;
+		
+		for (Node leaf : leafNodes) {
+			double val = 0;
+			Node n = leaf;
+			while (n.depth > 0) {
+				val += n.value;
+				n = n.parent;
+			}
+			
+			if (val > bestValue) {
+				bestLeaf = leaf;
+				bestValue = val;
+			}
+		}
+		
+		if (bestLeaf == null) {
+//			System.out.println("Sorry, I failed you");
+			return null;
+		}
+		
+		Stack<Integer> retval = new Stack<Integer>();
+		Node nextNode = bestLeaf;
+		while (nextNode.depth != 0) {
+			retval.push(nextNode.index);
+			nextNode = nextNode.parent;			
+		}		
+		return retval;	
+	}
+	
 	public MOVE BeginSearch() {		
 		Queue<Node> openList = new LinkedList<>();		
 		
@@ -149,7 +218,7 @@ public class Search {
 			nextNode = nextNode.parent;
 		}
 		MOVE move = game.getNextMoveTowardsTarget(startIndex, nextNode.index, DM.PATH);
-		System.out.println("Best value: " + bestValue + ", number of leaves: " + leafNodes.size() + ", MOVE: " + move.name()); 
+//		System.out.println("Best value: " + bestValue + ", number of leaves: " + leafNodes.size() + ", MOVE: " + move.name()); 
 		return move;	
 	}
 	
