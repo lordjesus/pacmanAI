@@ -51,7 +51,7 @@ public class Executor
 		int numTrials=10;
 		exec.runExperiment(new RandomPacMan(),new RandomGhosts(),numTrials);
 		 */
-		boolean visual = false;
+		boolean visual = true;
 		if (visual) {
 			exec.runGameTimed(new FSMPacMan(),new StarterGhosts(),visual);
 //			exec.runGame(new FSMPacMan(),new StarterGhosts(),visual, 50);

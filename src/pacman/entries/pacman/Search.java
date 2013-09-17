@@ -21,6 +21,8 @@ public class Search {
 	int closestGhostDist;
 	double ghostRatio;
 	boolean beAfraid; // true if avoid ghosts
+	int timeSinceLastEat;
+	double eatRatio;
 	
 	public Search(Game game, int depth, int startIndex) {
 		this.depthLimit = depth;
@@ -29,11 +31,13 @@ public class Search {
 		mapGhosts();
 	}
 	
-	public Search(Game game, int depth, int startIndex, boolean beAfraid) {
+	public Search(Game game, int depth, int startIndex, boolean beAfraid, int timeSinceLastEat) {
 		this.depthLimit = depth;
 		this.game = game;
 		this.startIndex = startIndex;
 		this.beAfraid = beAfraid;
+		this.timeSinceLastEat = timeSinceLastEat;
+		eatRatio = 1 + timeSinceLastEat / 10.0;
 		if (beAfraid) {
 			mapGhosts();
 		}
@@ -66,6 +70,9 @@ public class Search {
 		}
 		int nextIndices[] = game.getNeighbouringNodes(n, dir);
 		for (int next : nextIndices) {
+			if (next == startIndex) {
+				continue;
+			}
 			int penalty = GHOST_PENALTY + depth * 10;
 			if (ghostMapping.containsKey(next)) {
 				if (ghostMapping.get(next) < penalty) {
@@ -132,7 +139,7 @@ public class Search {
 				bestValue = val;
 			}
 		}
-//		System.out.println("Best value: " + bestValue + ", number of leaves: " + leafNodes.size()); 
+		
 		if (bestLeaf == null) {
 //			System.out.println("Sorry, I failed you");
 			return MOVE.NEUTRAL;
@@ -141,15 +148,20 @@ public class Search {
 		while (nextNode.depth != 1) {
 			nextNode = nextNode.parent;
 		}
-		return game.getNextMoveTowardsTarget(startIndex, nextNode.index, DM.PATH);				
+		MOVE move = game.getNextMoveTowardsTarget(startIndex, nextNode.index, DM.PATH);
+		System.out.println("Best value: " + bestValue + ", number of leaves: " + leafNodes.size() + ", MOVE: " + move.name()); 
+		return move;	
 	}
 	
 	private double GetValueOfNode(int index) {
 		double value = 0;
 		if (containsIndex(game.getActivePillsIndices(), index)) {
-			value += 10;
+			value += 10 * eatRatio;
 		} 
 		if (containsIndex(game.getActivePowerPillsIndices(), index)) {
+			if (beAfraid) {
+				value += 5000;
+			}
 			value += 50;
 		}
 		
