@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Random;
 
+import dataRecording.DataCollectorController;
+
 import pacman.controllers.Controller;
 import pacman.controllers.HumanController;
 import pacman.controllers.KeyBoardInput;
@@ -51,10 +53,11 @@ public class Executor
 		int numTrials=10;
 		exec.runExperiment(new RandomPacMan(),new RandomGhosts(),numTrials);
 		 */
-		boolean visual = false;
+		boolean visual = true;
 		if (visual) {
 //			exec.runGameTimed(new FSMPacMan(),new StarterGhosts(),visual);
-			exec.runGame(new FSMPacMan(),new AggressiveGhosts(),visual, 5);
+//			exec.runGame(new FSMPacMan(),new StarterGhosts(),visual, 5);
+			exec.runGameTimed(new DataCollectorController(new KeyBoardInput()),new StarterGhosts(),visual);
 		}
 		else {
 			double avg = 0;
