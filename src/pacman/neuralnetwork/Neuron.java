@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Neuron {
-	public int layer;
-	public List<Synapse> synapses;
-	public double inputValue, outputValue, bias;
+	public int layer, id;
+	public List<Synapse> incoming_synapses, outgoing_synapses;
+	public double inputValue, outputValue, bias, error;
 	
-	public Neuron(int layer) {
+	public Neuron(int layer, int id) {
 		this.layer = layer;
-		this.synapses = new ArrayList<>();
+		this.id = id;
+		this.incoming_synapses = new ArrayList<>();
+		this.outgoing_synapses = new ArrayList<>();
 	}
 	
 	public void SetInputValue(double value) {
@@ -19,10 +21,11 @@ public class Neuron {
 	
 	public double ComputeOutputValue() {
 		if (layer == NeuralNetwork.INPUT_LAYER) {
-			outputValue = inputValue;
+			this.outputValue = this.inputValue;
 		} else {
 			double input = computeNetInput();
-			outputValue = sigmoid(input);
+			this.inputValue = input;
+			this.outputValue = sigmoid(input);
 		}
 		return outputValue;
 	}
@@ -33,8 +36,8 @@ public class Neuron {
 	
 	private double computeNetInput() {
 		double input = 0;
-		for (Synapse s : synapses) {
-			input += s.weight * s.n_from.outputValue;
+		for (Synapse s : incoming_synapses) {
+			input += s.weight * s.left_neuron.outputValue;
 		}
 		input += this.bias;
 		return input;
@@ -42,6 +45,6 @@ public class Neuron {
 	
 	@Override
 	public String toString() {
-		return "Layer: " + layer + "\t InputValue: " + inputValue + "\t OutputValue: " + outputValue;
+		return "Id: " + id + ", Layer: " + layer + "\t InputValue: " + inputValue + "\t OutputValue: " + outputValue;
 	}
 }

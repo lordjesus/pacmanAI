@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<NeuralNetwork><LayerStore>
+	<Layer id="0">
+		<Neuron id="0" bias="0.0"></Neuron>
+		<Neuron id="1" bias="0.0"></Neuron>
+	</Layer>
+	<Layer id="1">
+		<Neuron id="2" bias="-0.09639596612590634"></Neuron>
+		<Neuron id="3" bias="-0.038933973171647"></Neuron>
+	</Layer>
+	<Layer id="2">
+		<Neuron id="4" bias="-0.3901581298879784"></Neuron>
+	</Layer>
+</LayerStore>
+<SynapseStore>
+	<Synapse left_neuron="0" right_neuron="2" weight="0.2849120108969238"></Synapse>
+	<Synapse left_neuron="0" right_neuron="3" weight="-0.7813186722040547"></Synapse>
+	<Synapse left_neuron="1" right_neuron="2" weight="-0.2548557782783026"></Synapse>
+	<Synapse left_neuron="1" right_neuron="3" weight="-0.7238020685279277"></Synapse>
+	<Synapse left_neuron="2" right_neuron="4" weight="0.7945335201026344"></Synapse>
+	<Synapse left_neuron="3" right_neuron="4" weight="0.4874432471111385"></Synapse>
+</SynapseStore>
+</NeuralNetwork>
