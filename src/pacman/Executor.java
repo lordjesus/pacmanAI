@@ -11,7 +11,6 @@ import java.util.EnumMap;
 import java.util.Random;
 
 import dataRecording.DataCollectorController;
-
 import pacman.controllers.Controller;
 import pacman.controllers.HumanController;
 import pacman.controllers.KeyBoardInput;
@@ -26,6 +25,7 @@ import pacman.controllers.examples.RandomPacMan;
 import pacman.controllers.examples.StarterGhosts;
 import pacman.controllers.examples.StarterPacMan;
 import pacman.entries.pacman.FSMPacMan;
+import pacman.entries.pacman.NeuralPacMan;
 import pacman.game.Game;
 import pacman.game.GameView;
 import static pacman.game.Constants.*;
@@ -57,7 +57,8 @@ public class Executor
 		if (visual) {
 //			exec.runGameTimed(new FSMPacMan(),new StarterGhosts(),visual);
 //			exec.runGame(new FSMPacMan(),new StarterGhosts(),visual, 5);
-			exec.runGameTimed(new DataCollectorController(new KeyBoardInput()),new StarterGhosts(),visual);
+//			exec.runGameTimed(new DataCollectorController(new KeyBoardInput()),new StarterGhosts(),visual);
+			exec.runGameTimed(new NeuralPacMan(), new StarterGhosts(), visual); 
 		}
 		else {
 			double avg = 0;

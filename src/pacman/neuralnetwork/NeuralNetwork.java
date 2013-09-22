@@ -38,7 +38,7 @@ public class NeuralNetwork {
 		OUTPUT_LAYER = topology.length - 1;
 		layers = new HashMap<Integer, List<Neuron>>();
 
-		int id = 0;
+		int id = 1;
 		for (int layer = 0; layer < topology.length; layer++) {
 			int l = topology[layer];
 			for (int j = 0; j < l; j++) {
@@ -93,7 +93,7 @@ public class NeuralNetwork {
 	public void LoadNeuralNetworkFromFile(String filename) throws XMLStreamException, FileNotFoundException {
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 		// Setup a new eventReader
-		InputStream in = new FileInputStream(filename);
+		InputStream in = new FileInputStream("NeuralNetworks/" + filename);
 		XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
 		int currentLayer = 0;
 		List<Neuron> neuronList = null;
@@ -174,6 +174,8 @@ public class NeuralNetwork {
 					s.left_neuron = findNeuronById(Integer.parseInt(leftNeuronString));
 					s.right_neuron = findNeuronById(Integer.parseInt(rightNeuronString));
 					s.weight = Double.parseDouble(weightString);
+					s.left_neuron.outgoing_synapses.add(s);
+					s.right_neuron.incoming_synapses.add(s);
 					synapses.add(s);
 				}
 			}
@@ -202,7 +204,7 @@ public class NeuralNetwork {
 		System.out.println("Saving Neural network to file " + filename);
 		XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
 
-		XMLEventWriter writer = outputFactory.createXMLEventWriter(new FileOutputStream(filename));
+		XMLEventWriter writer = outputFactory.createXMLEventWriter(new FileOutputStream("NeuralNetworks/" + filename));
 		XMLEventFactory eventFactory = XMLEventFactory.newInstance();
 		XMLEvent end = eventFactory.createDTD("\n");
 		XMLEvent tab = eventFactory.createDTD("\t");
@@ -270,12 +272,123 @@ public class NeuralNetwork {
 	}
 
 	public void BackPropagation(List<TrainingTuple> data, int epochs, double w_threshold) {
+		System.out.println("Starting Back propagation");
+		long startTime = System.currentTimeMillis();
+		boolean running = true;
+		boolean classify = true;
+		int correctlyClassified = 0;
+		double c_threshold = 0.1;
+		double acc = 0.0;
+		int epoch = 1;
+		double largest_delta_w = Integer.MIN_VALUE;
+		while (running) {	
+			correctlyClassified = 0;
+			largest_delta_w = Integer.MIN_VALUE;
+			double learning_rate = 1.0 / epoch;
+			for (TrainingTuple tuple : data) {
+				// Propagate inputs forward
+				List<Neuron> inputNeurons = layers.get(INPUT_LAYER);
+				for (int i = 0; i < inputNeurons.size(); i++) {
+					Neuron n = inputNeurons.get(i);
+					n.SetInputValue(tuple.input.get(i));
+
+				}
+				for (int i = INPUT_LAYER; i <= OUTPUT_LAYER; i++) {
+					List<Neuron> layerNeurons = layers.get(i);
+					for (Neuron n : layerNeurons) {
+
+						n.ComputeOutputValue();
+					}
+				}
+				
+				// Check classification ability
+				List<Neuron> outputNeurons = layers.get(OUTPUT_LAYER);
+				if (classify) {
+					// For PacMan, assume that only one direction is correct
+					// Thus, the highest scoring output determines the direction
+					int bestDirection = -1;
+					double bestValue = -1;
+					for (int j = 0; j < outputNeurons.size(); j++) {
+						Neuron n = outputNeurons.get(j);
+						if (n.outputValue > bestValue) {
+							bestValue = n.outputValue;
+							bestDirection = j;
+						}
+					}
+					// Search through class labels of training data to check
+					boolean correct = false;
+					for (int i = 0; i < tuple.output.size(); i++) {						
+						if (tuple.output.get(i) > 0.9) {
+							if (bestDirection == i) {
+								// Classified as true
+								correct = true;
+								break;
+							}
+						}
+					}
+					if (correct) {
+						correctlyClassified++;
+					}
+				}
+
+				// Backpropagate the errors				
+				for (int j = 0; j < outputNeurons.size(); j++) {
+					Neuron n = outputNeurons.get(j);
+					n.error = n.outputValue * (1 - n.outputValue) * (tuple.output.get(j) - n.outputValue);
+				}
+				for (int j = OUTPUT_LAYER - 1; j >= 0; j--) {
+					List<Neuron> layerNeurons = layers.get(j);
+					for (Neuron n : layerNeurons) {
+						double sum_error = 0;
+						for (Synapse s : n.outgoing_synapses) {
+							sum_error += s.right_neuron.error * s.weight;
+						}
+						n.error = n.outputValue * (1 - n.outputValue) * sum_error;
+					}
+				}
+
+				// Weight updates
+				for (Synapse s : synapses) {
+					double delta_w = learning_rate * s.right_neuron.error * s.left_neuron.outputValue;
+					if (delta_w > largest_delta_w) {
+						largest_delta_w = delta_w;
+					}
+					s.weight += delta_w;
+				}
+				// Bias update
+				for (List<Neuron> layer : layers.values()) {
+					for (Neuron n : layer) {
+						double delta_b = learning_rate * n.error;
+						n.bias += delta_b;
+					}
+				}
+			}
+			// Stopping conditions
+			if (epoch >= epochs) {
+				running = false;
+			}
+			if (largest_delta_w < w_threshold) {
+				running = false;
+			}
+			double misClassified = 1 - (double)correctlyClassified / data.size();
+			if (misClassified < c_threshold) {
+				running = false;
+			}
+			acc = 1 - misClassified;
+			epoch++;
+		}
+		long endTime = System.currentTimeMillis();
+		System.out.println("Took " + (endTime - startTime) + " ms. Stopped at epoch " + epoch + ", with delta_w: " + largest_delta_w
+				+ ". Acc=" + acc);
+	}
+	
+	public void BackPropagationTest(List<TrainingTuple> data, int epochs, double w_threshold) {
 		boolean running = true;
 		int epoch = 1;
 		double largest_delta_w = Integer.MIN_VALUE;
 		while (running) {	
 			largest_delta_w = Integer.MIN_VALUE;
-			double learning_rate = 1.0 / epoch;
+			double learning_rate = 0.9;
 			for (TrainingTuple tuple : data) {
 				// Propagate inputs forward
 				List<Neuron> inputNeurons = layers.get(INPUT_LAYER);
@@ -316,6 +429,7 @@ public class NeuralNetwork {
 						largest_delta_w = delta_w;
 					}
 					s.weight += delta_w;
+					int x = 0;
 				}
 				// Bias update
 				for (List<Neuron> layer : layers.values()) {
@@ -355,7 +469,7 @@ public class NeuralNetwork {
 		List<Double> outputs = new ArrayList<Double>();
 		for (Neuron n : outputNeurons) {
 			outputs.add(n.outputValue);
-			System.out.println(n.toString());
+//			System.out.println(n.toString());
 		}
 		return outputs;
 	}

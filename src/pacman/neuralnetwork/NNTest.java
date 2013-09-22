@@ -7,6 +7,7 @@ import java.util.Random;
 public class NNTest {
 
 	public static void main(String[] args) {
+		ExampleTest();
 		LoadTest();
 		// TODO Auto-generated method stub
 		System.out.println("--------------------------------------------------------------------------------------------------------------------");
@@ -20,6 +21,10 @@ public class NNTest {
 		System.out.println("--------------------------------------------------------------------------------------------------------------------");
 		System.out.println("XOR test");
 		XOrTest();
+		
+		System.out.println("--------------------------------------------------------------------------------------------------------------------");
+		System.out.println("Test test");
+		Test();
 	}
 	
 	private static void LoadTest() {
@@ -187,7 +192,68 @@ public class NNTest {
 		}
 		System.out.println("Result: " + (res == test.output.get(0)));
 		try {
-			nn.SaveToFile("xor.xml");
+			nn.SaveToFile("test.xml");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static void ExampleTest() {
+		
+		NeuralNetwork nn = new NeuralNetwork("test.xml");
+
+		TrainingTuple t1 = new TrainingTuple();
+		t1.input.add(1.0); t1.input.add(0.0); t1.input.add(1.0); t1.output.add(1.0);	
+		
+		
+		List<TrainingTuple> data = new ArrayList<TrainingTuple>();
+		data.add(t1);
+		
+		
+		nn.BackPropagationTest(data, 10000, 0.001); 
+		TrainingTuple test = t1;
+		
+		System.out.println("Input: {" + test.input.get(0) + ", " + test.input.get(1) + "}, expected output: " + test.output.get(0));
+		List<Double> results = nn.fire(test.input);
+		double res = results.get(0);
+		if (res < 0.5) {
+			res = 0.0;
+		} else {
+			res = 1.0;
+		}
+		System.out.println("Result: " + (res == test.output.get(0)));
+		
+	}
+	
+	private static void Test() {
+		int[] topology = new int[] {
+				3, 2, 1
+		};
+		NeuralNetwork nn = new NeuralNetwork(topology);
+
+		TrainingTuple t1 = new TrainingTuple();
+		t1.input.add(1.0); t1.input.add(1.0); t1.input.add(0.0); t1.output.add(0.0);	
+		
+		
+		List<TrainingTuple> data = new ArrayList<TrainingTuple>();
+		data.add(t1);
+		
+		
+		nn.BackPropagation(data, 10000, 0.001); 
+		TrainingTuple test = t1;
+		
+		System.out.println("Input: {" + test.input.get(0) + ", " + test.input.get(1) + "}, expected output: " + test.output.get(0));
+		List<Double> results = nn.fire(test.input);
+		double res = results.get(0);
+		if (res < 0.5) {
+			res = 0.0;
+		} else {
+			res = 1.0;
+		}
+		System.out.println("Result: " + (res == test.output.get(0)));
+		try {
+			nn.SaveToFile("test.xml");
 		}
 		catch (Exception e) {
 			e.printStackTrace();
