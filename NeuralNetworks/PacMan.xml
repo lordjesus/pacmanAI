@@ -13,230 +13,230 @@
 		<Neuron id="10" bias="0.0"></Neuron>
 		<Neuron id="11" bias="0.0"></Neuron>
 		<Neuron id="12" bias="0.0"></Neuron>
-		<Neuron id="13" bias="-78.60874188360452"></Neuron>
-		<Neuron id="14" bias="-17.703031656819384"></Neuron>
-		<Neuron id="15" bias="-1.768931209971992"></Neuron>
-		<Neuron id="16" bias="16.911437353729678"></Neuron>
+		<Neuron id="13" bias="-89.63435429794296"></Neuron>
+		<Neuron id="14" bias="-81.02724380309843"></Neuron>
+		<Neuron id="15" bias="-37.51793084041067"></Neuron>
+		<Neuron id="16" bias="136.37282594025714"></Neuron>
 	</Layer>
 	<Layer id="1">
-		<Neuron id="17" bias="0.8039844043917614"></Neuron>
-		<Neuron id="18" bias="4.745640817514205"></Neuron>
-		<Neuron id="19" bias="-2.1689724773155827"></Neuron>
-		<Neuron id="20" bias="-2.571286122515684"></Neuron>
-		<Neuron id="21" bias="-0.4104460613990838"></Neuron>
-		<Neuron id="22" bias="-1.3640706081834377"></Neuron>
-		<Neuron id="23" bias="-5.971147514772687"></Neuron>
-		<Neuron id="24" bias="-1.5847616047986555"></Neuron>
-		<Neuron id="25" bias="-9.270957661531877"></Neuron>
-		<Neuron id="26" bias="2.6511072409851715"></Neuron>
+		<Neuron id="17" bias="2.77090232804018"></Neuron>
+		<Neuron id="18" bias="-3.792915303024237"></Neuron>
+		<Neuron id="19" bias="-6.5270065364669945"></Neuron>
+		<Neuron id="20" bias="-0.3470047737937705"></Neuron>
+		<Neuron id="21" bias="5.208295273159758"></Neuron>
+		<Neuron id="22" bias="-0.5150447958188639"></Neuron>
+		<Neuron id="23" bias="-8.500859128144835"></Neuron>
+		<Neuron id="24" bias="-1.8754527439672377"></Neuron>
+		<Neuron id="25" bias="-5.062930604256217"></Neuron>
+		<Neuron id="26" bias="-6.2859040425723"></Neuron>
 	</Layer>
 	<Layer id="2">
-		<Neuron id="27" bias="2.102128730612387"></Neuron>
-		<Neuron id="28" bias="-0.44286172548820174"></Neuron>
-		<Neuron id="29" bias="-7.955299870699508"></Neuron>
-		<Neuron id="30" bias="-2.135874116999653"></Neuron>
+		<Neuron id="27" bias="-0.4027711626029444"></Neuron>
+		<Neuron id="28" bias="-2.5086009660857176"></Neuron>
+		<Neuron id="29" bias="-5.551736497348141"></Neuron>
+		<Neuron id="30" bias="0.1313266062811741"></Neuron>
 	</Layer>
 </LayerStore>
 <SynapseStore>
-	<Synapse left_neuron="1" right_neuron="17" weight="0.7718553116573983"></Synapse>
-	<Synapse left_neuron="1" right_neuron="18" weight="-0.08393309176926866"></Synapse>
-	<Synapse left_neuron="1" right_neuron="19" weight="0.3898597083959865"></Synapse>
-	<Synapse left_neuron="1" right_neuron="20" weight="0.6202379815329699"></Synapse>
-	<Synapse left_neuron="1" right_neuron="21" weight="-0.24204580461986702"></Synapse>
-	<Synapse left_neuron="1" right_neuron="22" weight="-0.6583574878441103"></Synapse>
-	<Synapse left_neuron="1" right_neuron="23" weight="-0.6628735957657623"></Synapse>
-	<Synapse left_neuron="1" right_neuron="24" weight="-0.5613984640443361"></Synapse>
-	<Synapse left_neuron="1" right_neuron="25" weight="-0.8329855335422043"></Synapse>
-	<Synapse left_neuron="1" right_neuron="26" weight="0.4337972761246818"></Synapse>
-	<Synapse left_neuron="2" right_neuron="17" weight="0.3179674417809111"></Synapse>
-	<Synapse left_neuron="2" right_neuron="18" weight="-0.8344268515650248"></Synapse>
-	<Synapse left_neuron="2" right_neuron="19" weight="-0.8285149424995417"></Synapse>
-	<Synapse left_neuron="2" right_neuron="20" weight="0.13241746893061102"></Synapse>
-	<Synapse left_neuron="2" right_neuron="21" weight="-0.4008782316887727"></Synapse>
-	<Synapse left_neuron="2" right_neuron="22" weight="-0.1927131756945113"></Synapse>
-	<Synapse left_neuron="2" right_neuron="23" weight="-0.17531541908991044"></Synapse>
-	<Synapse left_neuron="2" right_neuron="24" weight="-0.5073041750922573"></Synapse>
-	<Synapse left_neuron="2" right_neuron="25" weight="0.49310283173991665"></Synapse>
-	<Synapse left_neuron="2" right_neuron="26" weight="0.5186655046382018"></Synapse>
-	<Synapse left_neuron="3" right_neuron="17" weight="-0.9148894645642626"></Synapse>
-	<Synapse left_neuron="3" right_neuron="18" weight="-1.601726270085068"></Synapse>
-	<Synapse left_neuron="3" right_neuron="19" weight="-1.014903859370615E-4"></Synapse>
-	<Synapse left_neuron="3" right_neuron="20" weight="-0.32690558146008086"></Synapse>
-	<Synapse left_neuron="3" right_neuron="21" weight="-1.684462787111985"></Synapse>
-	<Synapse left_neuron="3" right_neuron="22" weight="0.41771254790254964"></Synapse>
-	<Synapse left_neuron="3" right_neuron="23" weight="0.8112842176325749"></Synapse>
-	<Synapse left_neuron="3" right_neuron="24" weight="-0.5231739089154978"></Synapse>
-	<Synapse left_neuron="3" right_neuron="25" weight="0.1970198378097777"></Synapse>
-	<Synapse left_neuron="3" right_neuron="26" weight="1.9424663781293785"></Synapse>
-	<Synapse left_neuron="4" right_neuron="17" weight="0.49081103394256737"></Synapse>
-	<Synapse left_neuron="4" right_neuron="18" weight="1.0165640617173153"></Synapse>
-	<Synapse left_neuron="4" right_neuron="19" weight="1.3677238172864783"></Synapse>
-	<Synapse left_neuron="4" right_neuron="20" weight="-2.665586732731702"></Synapse>
-	<Synapse left_neuron="4" right_neuron="21" weight="-0.17179201346180545"></Synapse>
-	<Synapse left_neuron="4" right_neuron="22" weight="0.689565729218741"></Synapse>
-	<Synapse left_neuron="4" right_neuron="23" weight="0.07545751990628667"></Synapse>
-	<Synapse left_neuron="4" right_neuron="24" weight="-0.505007874921456"></Synapse>
-	<Synapse left_neuron="4" right_neuron="25" weight="0.34031974750394395"></Synapse>
-	<Synapse left_neuron="4" right_neuron="26" weight="0.3092724668326836"></Synapse>
-	<Synapse left_neuron="5" right_neuron="17" weight="-2.263986590844369"></Synapse>
-	<Synapse left_neuron="5" right_neuron="18" weight="1.0555373945520548"></Synapse>
-	<Synapse left_neuron="5" right_neuron="19" weight="3.3471558592223625"></Synapse>
-	<Synapse left_neuron="5" right_neuron="20" weight="-2.6910601169479573"></Synapse>
-	<Synapse left_neuron="5" right_neuron="21" weight="-2.4801342439087484"></Synapse>
-	<Synapse left_neuron="5" right_neuron="22" weight="-2.2552625511564037"></Synapse>
-	<Synapse left_neuron="5" right_neuron="23" weight="3.537851321218147"></Synapse>
-	<Synapse left_neuron="5" right_neuron="24" weight="1.9202370063881176"></Synapse>
-	<Synapse left_neuron="5" right_neuron="25" weight="-0.6166788533456193"></Synapse>
-	<Synapse left_neuron="5" right_neuron="26" weight="-2.087419854901026"></Synapse>
-	<Synapse left_neuron="6" right_neuron="17" weight="-4.542699898072641"></Synapse>
-	<Synapse left_neuron="6" right_neuron="18" weight="3.319590158211388"></Synapse>
-	<Synapse left_neuron="6" right_neuron="19" weight="4.154515228487605"></Synapse>
-	<Synapse left_neuron="6" right_neuron="20" weight="-3.7381001698512604"></Synapse>
-	<Synapse left_neuron="6" right_neuron="21" weight="-1.5999973593104015"></Synapse>
-	<Synapse left_neuron="6" right_neuron="22" weight="1.3867849488854598"></Synapse>
-	<Synapse left_neuron="6" right_neuron="23" weight="3.1436341261840997"></Synapse>
-	<Synapse left_neuron="6" right_neuron="24" weight="-4.477100770676778"></Synapse>
-	<Synapse left_neuron="6" right_neuron="25" weight="-7.98318316078006"></Synapse>
-	<Synapse left_neuron="6" right_neuron="26" weight="2.0134658995368593"></Synapse>
-	<Synapse left_neuron="7" right_neuron="17" weight="0.3142368585857002"></Synapse>
-	<Synapse left_neuron="7" right_neuron="18" weight="1.4994237295704376"></Synapse>
-	<Synapse left_neuron="7" right_neuron="19" weight="6.787255979214687"></Synapse>
-	<Synapse left_neuron="7" right_neuron="20" weight="-4.30049162172095"></Synapse>
-	<Synapse left_neuron="7" right_neuron="21" weight="-1.9906538469006743"></Synapse>
-	<Synapse left_neuron="7" right_neuron="22" weight="1.5658282648338433"></Synapse>
-	<Synapse left_neuron="7" right_neuron="23" weight="4.5238542386143035"></Synapse>
-	<Synapse left_neuron="7" right_neuron="24" weight="1.7436259416037347"></Synapse>
-	<Synapse left_neuron="7" right_neuron="25" weight="0.35939988619621294"></Synapse>
-	<Synapse left_neuron="7" right_neuron="26" weight="-2.6384685978504288"></Synapse>
-	<Synapse left_neuron="8" right_neuron="17" weight="-0.9634117908963897"></Synapse>
-	<Synapse left_neuron="8" right_neuron="18" weight="0.5790272057702335"></Synapse>
-	<Synapse left_neuron="8" right_neuron="19" weight="-0.01939944577342217"></Synapse>
-	<Synapse left_neuron="8" right_neuron="20" weight="2.5685888309030176"></Synapse>
-	<Synapse left_neuron="8" right_neuron="21" weight="-1.58201364670322"></Synapse>
-	<Synapse left_neuron="8" right_neuron="22" weight="0.7143334891726746"></Synapse>
-	<Synapse left_neuron="8" right_neuron="23" weight="1.8240313031826891"></Synapse>
-	<Synapse left_neuron="8" right_neuron="24" weight="-0.7984665009188996"></Synapse>
-	<Synapse left_neuron="8" right_neuron="25" weight="-0.9996474820727883"></Synapse>
-	<Synapse left_neuron="8" right_neuron="26" weight="-3.987008473275625"></Synapse>
-	<Synapse left_neuron="9" right_neuron="17" weight="0.8359238570066689"></Synapse>
-	<Synapse left_neuron="9" right_neuron="18" weight="-0.8166927074095203"></Synapse>
-	<Synapse left_neuron="9" right_neuron="19" weight="0.6840413740434534"></Synapse>
-	<Synapse left_neuron="9" right_neuron="20" weight="-0.9600189961278498"></Synapse>
-	<Synapse left_neuron="9" right_neuron="21" weight="-0.259233948749664"></Synapse>
-	<Synapse left_neuron="9" right_neuron="22" weight="-0.4499892365075462"></Synapse>
-	<Synapse left_neuron="9" right_neuron="23" weight="-0.910476342871116"></Synapse>
-	<Synapse left_neuron="9" right_neuron="24" weight="0.7228744328532144"></Synapse>
-	<Synapse left_neuron="9" right_neuron="25" weight="-0.278003100731556"></Synapse>
-	<Synapse left_neuron="9" right_neuron="26" weight="0.2897143640093156"></Synapse>
-	<Synapse left_neuron="10" right_neuron="17" weight="-0.720208464622264"></Synapse>
-	<Synapse left_neuron="10" right_neuron="18" weight="0.1542430244594586"></Synapse>
-	<Synapse left_neuron="10" right_neuron="19" weight="0.2850925565674274"></Synapse>
-	<Synapse left_neuron="10" right_neuron="20" weight="0.5630137815446592"></Synapse>
-	<Synapse left_neuron="10" right_neuron="21" weight="0.5401962176843331"></Synapse>
-	<Synapse left_neuron="10" right_neuron="22" weight="0.8946960062233451"></Synapse>
-	<Synapse left_neuron="10" right_neuron="23" weight="0.23801237836135125"></Synapse>
-	<Synapse left_neuron="10" right_neuron="24" weight="0.7456682428040797"></Synapse>
-	<Synapse left_neuron="10" right_neuron="25" weight="0.8210130366088644"></Synapse>
-	<Synapse left_neuron="10" right_neuron="26" weight="-0.8118227743315032"></Synapse>
-	<Synapse left_neuron="11" right_neuron="17" weight="0.7917768311107183"></Synapse>
-	<Synapse left_neuron="11" right_neuron="18" weight="-0.40600247379911614"></Synapse>
-	<Synapse left_neuron="11" right_neuron="19" weight="-0.3549018018029644"></Synapse>
-	<Synapse left_neuron="11" right_neuron="20" weight="0.9911953207323672"></Synapse>
-	<Synapse left_neuron="11" right_neuron="21" weight="-0.4157921217479521"></Synapse>
-	<Synapse left_neuron="11" right_neuron="22" weight="-0.3617645900277875"></Synapse>
-	<Synapse left_neuron="11" right_neuron="23" weight="0.5203417233901491"></Synapse>
-	<Synapse left_neuron="11" right_neuron="24" weight="-0.7139892123792821"></Synapse>
-	<Synapse left_neuron="11" right_neuron="25" weight="-0.5521840046665374"></Synapse>
-	<Synapse left_neuron="11" right_neuron="26" weight="-0.27410157431092963"></Synapse>
-	<Synapse left_neuron="12" right_neuron="17" weight="0.14176902734353947"></Synapse>
-	<Synapse left_neuron="12" right_neuron="18" weight="-0.19410816624928162"></Synapse>
-	<Synapse left_neuron="12" right_neuron="19" weight="-0.6575734396640405"></Synapse>
-	<Synapse left_neuron="12" right_neuron="20" weight="0.5962115455043275"></Synapse>
-	<Synapse left_neuron="12" right_neuron="21" weight="-0.638498985495191"></Synapse>
-	<Synapse left_neuron="12" right_neuron="22" weight="0.1032871634072674"></Synapse>
-	<Synapse left_neuron="12" right_neuron="23" weight="0.16024826589538255"></Synapse>
-	<Synapse left_neuron="12" right_neuron="24" weight="-0.4868816293900833"></Synapse>
-	<Synapse left_neuron="12" right_neuron="25" weight="-0.7143579606354251"></Synapse>
-	<Synapse left_neuron="12" right_neuron="26" weight="-0.11800322763592264"></Synapse>
-	<Synapse left_neuron="13" right_neuron="17" weight="-3.1100155190127077"></Synapse>
-	<Synapse left_neuron="13" right_neuron="18" weight="-2.972930497600018"></Synapse>
-	<Synapse left_neuron="13" right_neuron="19" weight="1.4460491926245949"></Synapse>
-	<Synapse left_neuron="13" right_neuron="20" weight="-2.843047054669216"></Synapse>
-	<Synapse left_neuron="13" right_neuron="21" weight="-1.0026418307932483"></Synapse>
-	<Synapse left_neuron="13" right_neuron="22" weight="-1.449816427881486"></Synapse>
-	<Synapse left_neuron="13" right_neuron="23" weight="4.402833183989111"></Synapse>
-	<Synapse left_neuron="13" right_neuron="24" weight="-0.679788859806193"></Synapse>
-	<Synapse left_neuron="13" right_neuron="25" weight="1.5298640242652688"></Synapse>
-	<Synapse left_neuron="13" right_neuron="26" weight="-2.2657534572972997"></Synapse>
-	<Synapse left_neuron="14" right_neuron="17" weight="2.3290131752826837"></Synapse>
-	<Synapse left_neuron="14" right_neuron="18" weight="-5.341926015056008"></Synapse>
-	<Synapse left_neuron="14" right_neuron="19" weight="-0.72065518248796"></Synapse>
-	<Synapse left_neuron="14" right_neuron="20" weight="-1.7682196662682161"></Synapse>
-	<Synapse left_neuron="14" right_neuron="21" weight="1.1650218371579606"></Synapse>
-	<Synapse left_neuron="14" right_neuron="22" weight="-4.889933898009628"></Synapse>
-	<Synapse left_neuron="14" right_neuron="23" weight="1.8124220751519104"></Synapse>
-	<Synapse left_neuron="14" right_neuron="24" weight="1.717536458469898"></Synapse>
-	<Synapse left_neuron="14" right_neuron="25" weight="13.954594862720857"></Synapse>
-	<Synapse left_neuron="14" right_neuron="26" weight="1.8097710098115911"></Synapse>
-	<Synapse left_neuron="15" right_neuron="17" weight="-1.2916945435311908"></Synapse>
-	<Synapse left_neuron="15" right_neuron="18" weight="-4.139609517857646"></Synapse>
-	<Synapse left_neuron="15" right_neuron="19" weight="-2.3250258534534405"></Synapse>
-	<Synapse left_neuron="15" right_neuron="20" weight="3.3040888787019598"></Synapse>
-	<Synapse left_neuron="15" right_neuron="21" weight="-0.10056177365222535"></Synapse>
-	<Synapse left_neuron="15" right_neuron="22" weight="-4.382496789424304"></Synapse>
-	<Synapse left_neuron="15" right_neuron="23" weight="-0.11128947548284425"></Synapse>
-	<Synapse left_neuron="15" right_neuron="24" weight="-0.7136876871591559"></Synapse>
-	<Synapse left_neuron="15" right_neuron="25" weight="1.3017685118885103"></Synapse>
-	<Synapse left_neuron="15" right_neuron="26" weight="-0.7724400040080764"></Synapse>
-	<Synapse left_neuron="16" right_neuron="17" weight="0.06057265493709296"></Synapse>
-	<Synapse left_neuron="16" right_neuron="18" weight="-1.3444661293095186"></Synapse>
-	<Synapse left_neuron="16" right_neuron="19" weight="-0.14363064380494892"></Synapse>
-	<Synapse left_neuron="16" right_neuron="20" weight="0.2887173691041775"></Synapse>
-	<Synapse left_neuron="16" right_neuron="21" weight="-8.221165035693955"></Synapse>
-	<Synapse left_neuron="16" right_neuron="22" weight="-2.5484369871437007"></Synapse>
-	<Synapse left_neuron="16" right_neuron="23" weight="1.612507472685037"></Synapse>
-	<Synapse left_neuron="16" right_neuron="24" weight="5.9636692189744505"></Synapse>
-	<Synapse left_neuron="16" right_neuron="25" weight="1.2319210540806969"></Synapse>
-	<Synapse left_neuron="16" right_neuron="26" weight="-5.665491553193267"></Synapse>
-	<Synapse left_neuron="17" right_neuron="27" weight="-4.609167541638941"></Synapse>
-	<Synapse left_neuron="17" right_neuron="28" weight="2.6434855550513947"></Synapse>
-	<Synapse left_neuron="17" right_neuron="29" weight="0.034373567900536396"></Synapse>
-	<Synapse left_neuron="17" right_neuron="30" weight="3.510326831790785"></Synapse>
-	<Synapse left_neuron="18" right_neuron="27" weight="1.6630859785900705"></Synapse>
-	<Synapse left_neuron="18" right_neuron="28" weight="1.017010398796171"></Synapse>
-	<Synapse left_neuron="18" right_neuron="29" weight="3.146359360524495"></Synapse>
-	<Synapse left_neuron="18" right_neuron="30" weight="-4.83185315094315"></Synapse>
-	<Synapse left_neuron="19" right_neuron="27" weight="3.1094671538003262"></Synapse>
-	<Synapse left_neuron="19" right_neuron="28" weight="-4.889655883473373"></Synapse>
-	<Synapse left_neuron="19" right_neuron="29" weight="0.11457483546038069"></Synapse>
-	<Synapse left_neuron="19" right_neuron="30" weight="1.1852149120333941"></Synapse>
-	<Synapse left_neuron="20" right_neuron="27" weight="-1.3229767272307282"></Synapse>
-	<Synapse left_neuron="20" right_neuron="28" weight="-0.5159490804602723"></Synapse>
-	<Synapse left_neuron="20" right_neuron="29" weight="4.428655376737915"></Synapse>
-	<Synapse left_neuron="20" right_neuron="30" weight="-2.6149015364703856"></Synapse>
-	<Synapse left_neuron="21" right_neuron="27" weight="-0.40521011335730256"></Synapse>
-	<Synapse left_neuron="21" right_neuron="28" weight="-0.8304776514012514"></Synapse>
-	<Synapse left_neuron="21" right_neuron="29" weight="4.663985430707118"></Synapse>
-	<Synapse left_neuron="21" right_neuron="30" weight="-3.837695202996549"></Synapse>
-	<Synapse left_neuron="22" right_neuron="27" weight="3.7553307431940524"></Synapse>
-	<Synapse left_neuron="22" right_neuron="28" weight="-4.586032956324149"></Synapse>
-	<Synapse left_neuron="22" right_neuron="29" weight="-0.7471328819054999"></Synapse>
-	<Synapse left_neuron="22" right_neuron="30" weight="-0.9165729560482946"></Synapse>
-	<Synapse left_neuron="23" right_neuron="27" weight="-7.761000093396548"></Synapse>
-	<Synapse left_neuron="23" right_neuron="28" weight="5.337635724669249"></Synapse>
-	<Synapse left_neuron="23" right_neuron="29" weight="2.365438176394815"></Synapse>
-	<Synapse left_neuron="23" right_neuron="30" weight="1.8478953396993196"></Synapse>
-	<Synapse left_neuron="24" right_neuron="27" weight="-1.3430580067587152"></Synapse>
-	<Synapse left_neuron="24" right_neuron="28" weight="-3.1325668198864216"></Synapse>
-	<Synapse left_neuron="24" right_neuron="29" weight="3.280646578446366"></Synapse>
-	<Synapse left_neuron="24" right_neuron="30" weight="2.162357167488612"></Synapse>
-	<Synapse left_neuron="25" right_neuron="27" weight="4.706784012949099"></Synapse>
-	<Synapse left_neuron="25" right_neuron="28" weight="-0.3980104997867983"></Synapse>
-	<Synapse left_neuron="25" right_neuron="29" weight="0.1669489979289453"></Synapse>
-	<Synapse left_neuron="25" right_neuron="30" weight="-4.987312901263003"></Synapse>
-	<Synapse left_neuron="26" right_neuron="27" weight="-2.5544013854111287"></Synapse>
-	<Synapse left_neuron="26" right_neuron="28" weight="-2.1695772009179977"></Synapse>
-	<Synapse left_neuron="26" right_neuron="29" weight="2.4425195646344866"></Synapse>
-	<Synapse left_neuron="26" right_neuron="30" weight="4.13384606392001"></Synapse>
+	<Synapse left_neuron="1" right_neuron="17" weight="-0.8584959955826468"></Synapse>
+	<Synapse left_neuron="1" right_neuron="18" weight="0.45223434926756734"></Synapse>
+	<Synapse left_neuron="1" right_neuron="19" weight="-0.8567685839980488"></Synapse>
+	<Synapse left_neuron="1" right_neuron="20" weight="-0.3212080215748154"></Synapse>
+	<Synapse left_neuron="1" right_neuron="21" weight="0.30658065415568747"></Synapse>
+	<Synapse left_neuron="1" right_neuron="22" weight="0.7985477011713362"></Synapse>
+	<Synapse left_neuron="1" right_neuron="23" weight="0.259115635777291"></Synapse>
+	<Synapse left_neuron="1" right_neuron="24" weight="-0.25186432267877734"></Synapse>
+	<Synapse left_neuron="1" right_neuron="25" weight="0.8797985062226252"></Synapse>
+	<Synapse left_neuron="1" right_neuron="26" weight="-0.6632317401371302"></Synapse>
+	<Synapse left_neuron="2" right_neuron="17" weight="0.6471017312472296"></Synapse>
+	<Synapse left_neuron="2" right_neuron="18" weight="-0.01646737592881764"></Synapse>
+	<Synapse left_neuron="2" right_neuron="19" weight="0.5858880727002389"></Synapse>
+	<Synapse left_neuron="2" right_neuron="20" weight="0.4850880240144755"></Synapse>
+	<Synapse left_neuron="2" right_neuron="21" weight="-0.9565526276635374"></Synapse>
+	<Synapse left_neuron="2" right_neuron="22" weight="0.7982214947872956"></Synapse>
+	<Synapse left_neuron="2" right_neuron="23" weight="0.8764499253082774"></Synapse>
+	<Synapse left_neuron="2" right_neuron="24" weight="-0.7725251526511363"></Synapse>
+	<Synapse left_neuron="2" right_neuron="25" weight="-0.034775530143724476"></Synapse>
+	<Synapse left_neuron="2" right_neuron="26" weight="-0.7546717635745737"></Synapse>
+	<Synapse left_neuron="3" right_neuron="17" weight="0.034869876702765035"></Synapse>
+	<Synapse left_neuron="3" right_neuron="18" weight="-0.1739618676872391"></Synapse>
+	<Synapse left_neuron="3" right_neuron="19" weight="-0.5366216504657833"></Synapse>
+	<Synapse left_neuron="3" right_neuron="20" weight="-1.2141995441605884"></Synapse>
+	<Synapse left_neuron="3" right_neuron="21" weight="-2.2625827939157235"></Synapse>
+	<Synapse left_neuron="3" right_neuron="22" weight="0.23821699816505792"></Synapse>
+	<Synapse left_neuron="3" right_neuron="23" weight="3.7326923886450802"></Synapse>
+	<Synapse left_neuron="3" right_neuron="24" weight="-0.4855908560702837"></Synapse>
+	<Synapse left_neuron="3" right_neuron="25" weight="0.020803341275946866"></Synapse>
+	<Synapse left_neuron="3" right_neuron="26" weight="0.43265055691091214"></Synapse>
+	<Synapse left_neuron="4" right_neuron="17" weight="-0.6353328995171587"></Synapse>
+	<Synapse left_neuron="4" right_neuron="18" weight="-0.9835116886441262"></Synapse>
+	<Synapse left_neuron="4" right_neuron="19" weight="0.7433806951653771"></Synapse>
+	<Synapse left_neuron="4" right_neuron="20" weight="-3.0928273760104688"></Synapse>
+	<Synapse left_neuron="4" right_neuron="21" weight="0.11410360342469013"></Synapse>
+	<Synapse left_neuron="4" right_neuron="22" weight="-0.25342424633822624"></Synapse>
+	<Synapse left_neuron="4" right_neuron="23" weight="-1.7164308497942078"></Synapse>
+	<Synapse left_neuron="4" right_neuron="24" weight="0.9356674915778194"></Synapse>
+	<Synapse left_neuron="4" right_neuron="25" weight="-2.231481559913463"></Synapse>
+	<Synapse left_neuron="4" right_neuron="26" weight="-0.5342308084472234"></Synapse>
+	<Synapse left_neuron="5" right_neuron="17" weight="-0.017934158500870365"></Synapse>
+	<Synapse left_neuron="5" right_neuron="18" weight="-0.23519233416325255"></Synapse>
+	<Synapse left_neuron="5" right_neuron="19" weight="0.3103415773937106"></Synapse>
+	<Synapse left_neuron="5" right_neuron="20" weight="-3.174381456659119"></Synapse>
+	<Synapse left_neuron="5" right_neuron="21" weight="-0.27012392626363224"></Synapse>
+	<Synapse left_neuron="5" right_neuron="22" weight="8.199714989485158E-4"></Synapse>
+	<Synapse left_neuron="5" right_neuron="23" weight="1.7225533121682621"></Synapse>
+	<Synapse left_neuron="5" right_neuron="24" weight="-1.3616318101014815"></Synapse>
+	<Synapse left_neuron="5" right_neuron="25" weight="-0.8443312973480752"></Synapse>
+	<Synapse left_neuron="5" right_neuron="26" weight="0.1034344518372961"></Synapse>
+	<Synapse left_neuron="6" right_neuron="17" weight="-1.8478824547750579"></Synapse>
+	<Synapse left_neuron="6" right_neuron="18" weight="2.7347648450816275"></Synapse>
+	<Synapse left_neuron="6" right_neuron="19" weight="0.1855594633241369"></Synapse>
+	<Synapse left_neuron="6" right_neuron="20" weight="0.15144606471449912"></Synapse>
+	<Synapse left_neuron="6" right_neuron="21" weight="1.1529105923521252"></Synapse>
+	<Synapse left_neuron="6" right_neuron="22" weight="-1.0568395512645836"></Synapse>
+	<Synapse left_neuron="6" right_neuron="23" weight="6.1990886825492995"></Synapse>
+	<Synapse left_neuron="6" right_neuron="24" weight="-2.632609477397762"></Synapse>
+	<Synapse left_neuron="6" right_neuron="25" weight="-3.56780127815052"></Synapse>
+	<Synapse left_neuron="6" right_neuron="26" weight="-0.24713662982267645"></Synapse>
+	<Synapse left_neuron="7" right_neuron="17" weight="-2.376782448913273"></Synapse>
+	<Synapse left_neuron="7" right_neuron="18" weight="0.6513806737497894"></Synapse>
+	<Synapse left_neuron="7" right_neuron="19" weight="-0.4087985396893305"></Synapse>
+	<Synapse left_neuron="7" right_neuron="20" weight="-2.5875749040484086"></Synapse>
+	<Synapse left_neuron="7" right_neuron="21" weight="-0.17764443882967082"></Synapse>
+	<Synapse left_neuron="7" right_neuron="22" weight="0.320112892198054"></Synapse>
+	<Synapse left_neuron="7" right_neuron="23" weight="-1.3510351793139412"></Synapse>
+	<Synapse left_neuron="7" right_neuron="24" weight="-2.89385617000657"></Synapse>
+	<Synapse left_neuron="7" right_neuron="25" weight="5.383071345676869"></Synapse>
+	<Synapse left_neuron="7" right_neuron="26" weight="0.2022219852325131"></Synapse>
+	<Synapse left_neuron="8" right_neuron="17" weight="-2.9438816187441805"></Synapse>
+	<Synapse left_neuron="8" right_neuron="18" weight="-2.0073969371146942"></Synapse>
+	<Synapse left_neuron="8" right_neuron="19" weight="4.615765703833232"></Synapse>
+	<Synapse left_neuron="8" right_neuron="20" weight="-0.1215701055487729"></Synapse>
+	<Synapse left_neuron="8" right_neuron="21" weight="10.186407104836562"></Synapse>
+	<Synapse left_neuron="8" right_neuron="22" weight="-1.2162499036834449"></Synapse>
+	<Synapse left_neuron="8" right_neuron="23" weight="1.459646102940256"></Synapse>
+	<Synapse left_neuron="8" right_neuron="24" weight="-1.5050374047297077"></Synapse>
+	<Synapse left_neuron="8" right_neuron="25" weight="-1.7752092286420895"></Synapse>
+	<Synapse left_neuron="8" right_neuron="26" weight="-3.3776206016151016"></Synapse>
+	<Synapse left_neuron="9" right_neuron="17" weight="0.8689468175124946"></Synapse>
+	<Synapse left_neuron="9" right_neuron="18" weight="-0.14473626383116134"></Synapse>
+	<Synapse left_neuron="9" right_neuron="19" weight="0.8911467326721298"></Synapse>
+	<Synapse left_neuron="9" right_neuron="20" weight="0.6494249548076534"></Synapse>
+	<Synapse left_neuron="9" right_neuron="21" weight="0.8599063059989607"></Synapse>
+	<Synapse left_neuron="9" right_neuron="22" weight="-0.6105753036447199"></Synapse>
+	<Synapse left_neuron="9" right_neuron="23" weight="-0.4672071476661601"></Synapse>
+	<Synapse left_neuron="9" right_neuron="24" weight="0.035816296207782816"></Synapse>
+	<Synapse left_neuron="9" right_neuron="25" weight="0.800691091965682"></Synapse>
+	<Synapse left_neuron="9" right_neuron="26" weight="0.26667014023355917"></Synapse>
+	<Synapse left_neuron="10" right_neuron="17" weight="0.6977824362358627"></Synapse>
+	<Synapse left_neuron="10" right_neuron="18" weight="0.5927094925724432"></Synapse>
+	<Synapse left_neuron="10" right_neuron="19" weight="0.7889607067625384"></Synapse>
+	<Synapse left_neuron="10" right_neuron="20" weight="0.651600398013892"></Synapse>
+	<Synapse left_neuron="10" right_neuron="21" weight="-0.1838663328454908"></Synapse>
+	<Synapse left_neuron="10" right_neuron="22" weight="-0.2538839879486523"></Synapse>
+	<Synapse left_neuron="10" right_neuron="23" weight="0.08134962686701641"></Synapse>
+	<Synapse left_neuron="10" right_neuron="24" weight="0.33395285531146723"></Synapse>
+	<Synapse left_neuron="10" right_neuron="25" weight="-0.2036710572934226"></Synapse>
+	<Synapse left_neuron="10" right_neuron="26" weight="0.29843116532121217"></Synapse>
+	<Synapse left_neuron="11" right_neuron="17" weight="-0.7015569101237167"></Synapse>
+	<Synapse left_neuron="11" right_neuron="18" weight="0.6147011734147212"></Synapse>
+	<Synapse left_neuron="11" right_neuron="19" weight="0.10489308613275128"></Synapse>
+	<Synapse left_neuron="11" right_neuron="20" weight="-0.8702894760351827"></Synapse>
+	<Synapse left_neuron="11" right_neuron="21" weight="-0.049035641077298076"></Synapse>
+	<Synapse left_neuron="11" right_neuron="22" weight="-0.7809003023213497"></Synapse>
+	<Synapse left_neuron="11" right_neuron="23" weight="0.6547007977534742"></Synapse>
+	<Synapse left_neuron="11" right_neuron="24" weight="-0.8378112387345846"></Synapse>
+	<Synapse left_neuron="11" right_neuron="25" weight="0.5078141314458566"></Synapse>
+	<Synapse left_neuron="11" right_neuron="26" weight="-0.752157573849473"></Synapse>
+	<Synapse left_neuron="12" right_neuron="17" weight="-0.7314458951993992"></Synapse>
+	<Synapse left_neuron="12" right_neuron="18" weight="-0.5814532861045629"></Synapse>
+	<Synapse left_neuron="12" right_neuron="19" weight="0.30277757349168644"></Synapse>
+	<Synapse left_neuron="12" right_neuron="20" weight="0.175552812165382"></Synapse>
+	<Synapse left_neuron="12" right_neuron="21" weight="-0.7205085613174791"></Synapse>
+	<Synapse left_neuron="12" right_neuron="22" weight="-0.5287711257328844"></Synapse>
+	<Synapse left_neuron="12" right_neuron="23" weight="-0.4096161752818541"></Synapse>
+	<Synapse left_neuron="12" right_neuron="24" weight="0.3413676014243314"></Synapse>
+	<Synapse left_neuron="12" right_neuron="25" weight="-0.4382866388149167"></Synapse>
+	<Synapse left_neuron="12" right_neuron="26" weight="-0.5155898763401914"></Synapse>
+	<Synapse left_neuron="13" right_neuron="17" weight="-2.441106729801707"></Synapse>
+	<Synapse left_neuron="13" right_neuron="18" weight="-1.20137890293652"></Synapse>
+	<Synapse left_neuron="13" right_neuron="19" weight="0.33052347197006215"></Synapse>
+	<Synapse left_neuron="13" right_neuron="20" weight="-3.4429089504836616"></Synapse>
+	<Synapse left_neuron="13" right_neuron="21" weight="-1.0593180853409052"></Synapse>
+	<Synapse left_neuron="13" right_neuron="22" weight="-1.4572374904223322"></Synapse>
+	<Synapse left_neuron="13" right_neuron="23" weight="9.750334164236326"></Synapse>
+	<Synapse left_neuron="13" right_neuron="24" weight="-1.7197155189467086"></Synapse>
+	<Synapse left_neuron="13" right_neuron="25" weight="-1.5097752630831494"></Synapse>
+	<Synapse left_neuron="13" right_neuron="26" weight="0.10061142176232973"></Synapse>
+	<Synapse left_neuron="14" right_neuron="17" weight="-1.7519521392732917"></Synapse>
+	<Synapse left_neuron="14" right_neuron="18" weight="3.3217863534374765"></Synapse>
+	<Synapse left_neuron="14" right_neuron="19" weight="-0.2530133719950512"></Synapse>
+	<Synapse left_neuron="14" right_neuron="20" weight="0.7210869584145664"></Synapse>
+	<Synapse left_neuron="14" right_neuron="21" weight="-1.8099997240273924"></Synapse>
+	<Synapse left_neuron="14" right_neuron="22" weight="-0.023945757603492844"></Synapse>
+	<Synapse left_neuron="14" right_neuron="23" weight="0.8988623746075143"></Synapse>
+	<Synapse left_neuron="14" right_neuron="24" weight="-5.423015379410227"></Synapse>
+	<Synapse left_neuron="14" right_neuron="25" weight="-2.1113217488861182"></Synapse>
+	<Synapse left_neuron="14" right_neuron="26" weight="-0.007442097399259083"></Synapse>
+	<Synapse left_neuron="15" right_neuron="17" weight="-1.6360253134353946"></Synapse>
+	<Synapse left_neuron="15" right_neuron="18" weight="0.8915519058725283"></Synapse>
+	<Synapse left_neuron="15" right_neuron="19" weight="0.27521139233269637"></Synapse>
+	<Synapse left_neuron="15" right_neuron="20" weight="-0.366466709586684"></Synapse>
+	<Synapse left_neuron="15" right_neuron="21" weight="-1.7481928351850755"></Synapse>
+	<Synapse left_neuron="15" right_neuron="22" weight="-0.02715936627404032"></Synapse>
+	<Synapse left_neuron="15" right_neuron="23" weight="0.861840926092401"></Synapse>
+	<Synapse left_neuron="15" right_neuron="24" weight="-0.8687420466883322"></Synapse>
+	<Synapse left_neuron="15" right_neuron="25" weight="3.7866705396252436"></Synapse>
+	<Synapse left_neuron="15" right_neuron="26" weight="0.016474307919174546"></Synapse>
+	<Synapse left_neuron="16" right_neuron="17" weight="1.7595332298856383"></Synapse>
+	<Synapse left_neuron="16" right_neuron="18" weight="-3.630802785597716"></Synapse>
+	<Synapse left_neuron="16" right_neuron="19" weight="5.913658879923284"></Synapse>
+	<Synapse left_neuron="16" right_neuron="20" weight="-4.271888625375536"></Synapse>
+	<Synapse left_neuron="16" right_neuron="21" weight="-15.09538938214459"></Synapse>
+	<Synapse left_neuron="16" right_neuron="22" weight="2.0814497970234926"></Synapse>
+	<Synapse left_neuron="16" right_neuron="23" weight="0.5715784996843452"></Synapse>
+	<Synapse left_neuron="16" right_neuron="24" weight="2.3687819447555203"></Synapse>
+	<Synapse left_neuron="16" right_neuron="25" weight="-0.24027999015977214"></Synapse>
+	<Synapse left_neuron="16" right_neuron="26" weight="16.155992313826165"></Synapse>
+	<Synapse left_neuron="17" right_neuron="27" weight="-1.8278959744526138"></Synapse>
+	<Synapse left_neuron="17" right_neuron="28" weight="-3.358899455506761"></Synapse>
+	<Synapse left_neuron="17" right_neuron="29" weight="1.6059313513992053"></Synapse>
+	<Synapse left_neuron="17" right_neuron="30" weight="4.953143925097047"></Synapse>
+	<Synapse left_neuron="18" right_neuron="27" weight="-2.499049337752164"></Synapse>
+	<Synapse left_neuron="18" right_neuron="28" weight="-2.3938045335909597"></Synapse>
+	<Synapse left_neuron="18" right_neuron="29" weight="2.8107532904534507"></Synapse>
+	<Synapse left_neuron="18" right_neuron="30" weight="2.938232833268619"></Synapse>
+	<Synapse left_neuron="19" right_neuron="27" weight="-5.862272472957627"></Synapse>
+	<Synapse left_neuron="19" right_neuron="28" weight="0.9070055303016817"></Synapse>
+	<Synapse left_neuron="19" right_neuron="29" weight="0.19653232918495747"></Synapse>
+	<Synapse left_neuron="19" right_neuron="30" weight="4.584733237001519"></Synapse>
+	<Synapse left_neuron="20" right_neuron="27" weight="-2.7744303883067216"></Synapse>
+	<Synapse left_neuron="20" right_neuron="28" weight="0.5255796648618938"></Synapse>
+	<Synapse left_neuron="20" right_neuron="29" weight="2.491248283160384"></Synapse>
+	<Synapse left_neuron="20" right_neuron="30" weight="-0.6373901869410961"></Synapse>
+	<Synapse left_neuron="21" right_neuron="27" weight="2.9857388698662426"></Synapse>
+	<Synapse left_neuron="21" right_neuron="28" weight="-0.26435346174366203"></Synapse>
+	<Synapse left_neuron="21" right_neuron="29" weight="2.918532579299902"></Synapse>
+	<Synapse left_neuron="21" right_neuron="30" weight="-4.166277010142491"></Synapse>
+	<Synapse left_neuron="22" right_neuron="27" weight="-2.768098694798529"></Synapse>
+	<Synapse left_neuron="22" right_neuron="28" weight="10.913020592058404"></Synapse>
+	<Synapse left_neuron="22" right_neuron="29" weight="-1.1756003011190321"></Synapse>
+	<Synapse left_neuron="22" right_neuron="30" weight="-4.987086453858555"></Synapse>
+	<Synapse left_neuron="23" right_neuron="27" weight="-1.6455278043601718"></Synapse>
+	<Synapse left_neuron="23" right_neuron="28" weight="2.1342630749616323"></Synapse>
+	<Synapse left_neuron="23" right_neuron="29" weight="0.4850816372113374"></Synapse>
+	<Synapse left_neuron="23" right_neuron="30" weight="-0.24382077707140104"></Synapse>
+	<Synapse left_neuron="24" right_neuron="27" weight="-1.7550162936873106"></Synapse>
+	<Synapse left_neuron="24" right_neuron="28" weight="0.5270152943766624"></Synapse>
+	<Synapse left_neuron="24" right_neuron="29" weight="3.366150685821263"></Synapse>
+	<Synapse left_neuron="24" right_neuron="30" weight="-1.8862883225313534"></Synapse>
+	<Synapse left_neuron="25" right_neuron="27" weight="-2.2962260632168907"></Synapse>
+	<Synapse left_neuron="25" right_neuron="28" weight="-3.366624115122869"></Synapse>
+	<Synapse left_neuron="25" right_neuron="29" weight="2.506585916079636"></Synapse>
+	<Synapse left_neuron="25" right_neuron="30" weight="3.86835062332778"></Synapse>
+	<Synapse left_neuron="26" right_neuron="27" weight="4.588029425832651"></Synapse>
+	<Synapse left_neuron="26" right_neuron="28" weight="-3.825600244968647"></Synapse>
+	<Synapse left_neuron="26" right_neuron="29" weight="2.7523708680674845"></Synapse>
+	<Synapse left_neuron="26" right_neuron="30" weight="-3.0832560206504085"></Synapse>
 </SynapseStore>
 </NeuralNetwork>

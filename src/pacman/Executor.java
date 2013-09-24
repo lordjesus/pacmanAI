@@ -56,9 +56,9 @@ public class Executor
 		boolean visual = true;
 		if (visual) {
 //			exec.runGameTimed(new FSMPacMan(),new StarterGhosts(),visual);
-//			exec.runGame(new FSMPacMan(),new StarterGhosts(),visual, 5);
+			exec.runGame(new FSMPacMan(),new StarterGhosts(),visual, 5);
 //			exec.runGameTimed(new DataCollectorController(new KeyBoardInput()),new StarterGhosts(),visual);
-			exec.runGameTimed(new NeuralPacMan(), new StarterGhosts(), visual); 
+//			exec.runGameTimed(new NeuralPacMan(), new StarterGhosts(), visual); 
 		}
 		else {
 			double avg = 0;
