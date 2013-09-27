@@ -25,9 +25,11 @@ import pacman.controllers.examples.RandomPacMan;
 import pacman.controllers.examples.StarterGhosts;
 import pacman.controllers.examples.StarterPacMan;
 import pacman.entries.pacman.FSMPacMan;
-import pacman.entries.pacman.NeuralPacMan;
+import pacman.entries.pacman.GA.EvolvedPacMan;
+import pacman.entries.pacman.GA.ResultBean;
 import pacman.game.Game;
 import pacman.game.GameView;
+import pacman.neuralnetwork.NeuralPacMan;
 import static pacman.game.Constants.*;
 
 /**
@@ -56,24 +58,26 @@ public class Executor
 		boolean visual = true;
 		if (visual) {
 //			exec.runGameTimed(new FSMPacMan(),new StarterGhosts(),visual);
-			exec.runGame(new FSMPacMan(),new StarterGhosts(),visual, 5);
+//			exec.runGame(new FSMPacMan(),new StarterGhosts(),visual, 5);
 //			exec.runGameTimed(new DataCollectorController(new KeyBoardInput()),new StarterGhosts(),visual);
 //			exec.runGameTimed(new NeuralPacMan(), new StarterGhosts(), visual); 
+			exec.runGameTimed(new EvolvedPacMan(), new StarterGhosts(), visual);
 		}
 		else {
 			double avg = 0;
 			int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
 			int iter = 10;
 			for (int i = 0; i < iter; i++) {
-				int[] score = exec.runSingleExperiment(new FSMPacMan(), new StarterGhosts());
-				System.out.println(i + ": Result = " + score[0] + ", level: " + (score[1] + 1));  
-				avg += score[0];
-				if (score[0] > max) {
-					max = score[0];
+				ResultBean result = exec.runSingleExperiment(new EvolvedPacMan(), new StarterGhosts());
+				double ppt = result.getPointsPerTime();
+				System.out.println(i + ": Result = " + result.score + ", level: " + (result.getLevel()) + ", time: " + result.totalTime + ", points per time: " + ppt);  
+				avg += result.score;
+				if (result.score > max) {
+					max = result.score;
 				}
-				if (score[0] < min) {
-					min = score[0];
-				}
+				if (result.score < min) {
+					min = result.score;
+				} 
 			}
 			avg /= iter;
 			System.out.println("Average: " + avg + ", min: " + min + ", max: " + max);
@@ -148,7 +152,7 @@ public class Executor
 		System.out.println(avgScore/trials);
 	}
 
-	public int[] runSingleExperiment(Controller<MOVE> pacManController,Controller<EnumMap<GHOST,MOVE>> ghostController)
+	public ResultBean runSingleExperiment(Controller<MOVE> pacManController,Controller<EnumMap<GHOST,MOVE>> ghostController)
 	{
 
 
@@ -162,11 +166,11 @@ public class Executor
 		}
 
 
-		
-		return new int[] { game.getScore(),
-				game.getCurrentLevel()
-		};
-		
+		ResultBean bean = new ResultBean();
+		bean.score = game.getScore();
+		bean.level = game.getCurrentLevel();
+		bean.totalTime = game.getTotalTime();
+		return bean;
 	}
 
 	/**
