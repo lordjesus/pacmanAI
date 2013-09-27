@@ -19,10 +19,12 @@ public class PacManTrainer {
 		
 		
 		if (data.size() > 0) {
-			int hiddenUnits = 10;
+			int hiddenUnits = 14;
+			int hiddenUnits2= 12;
 			int[] topology = new int[] {
 					data.get(0).input.size(),
 					hiddenUnits,
+					hiddenUnits2,
 					data.get(0).output.size()
 			};
 			NeuralNetwork nn = new NeuralNetwork(topology);
