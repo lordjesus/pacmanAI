@@ -27,7 +27,12 @@ public class EvolvedPacMan extends Controller<MOVE> {
 
 	public EvolvedPacMan() {
 		// Load properties from file
-		PhenoBean bean = new PhenoBean(GeneticAlgorithm.GA_FILE_NAME);
+		PhenoBean bean = new PhenoBean("myData/bestGene.txt");
+		GetFromPheno(bean); 
+	}
+	
+	public EvolvedPacMan(String filename) {
+		PhenoBean bean = new PhenoBean(filename);
 		GetFromPheno(bean); 
 	}
 	

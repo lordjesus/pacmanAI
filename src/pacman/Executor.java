@@ -26,6 +26,7 @@ import pacman.controllers.examples.StarterGhosts;
 import pacman.controllers.examples.StarterPacMan;
 import pacman.entries.pacman.FSMPacMan;
 import pacman.entries.pacman.GA.EvolvedPacMan;
+import pacman.entries.pacman.GA.GeneticAlgorithm;
 import pacman.entries.pacman.GA.ResultBean;
 import pacman.game.Game;
 import pacman.game.GameView;
@@ -55,32 +56,39 @@ public class Executor
 		int numTrials=10;
 		exec.runExperiment(new RandomPacMan(),new RandomGhosts(),numTrials);
 		 */
-		boolean visual = true;
+		boolean visual = false;
 		if (visual) {
-//			exec.runGameTimed(new FSMPacMan(),new StarterGhosts(),visual);
-//			exec.runGame(new FSMPacMan(),new StarterGhosts(),visual, 5);
-//			exec.runGameTimed(new DataCollectorController(new KeyBoardInput()),new StarterGhosts(),visual);
-//			exec.runGameTimed(new NeuralPacMan(), new StarterGhosts(), visual); 
-			exec.runGameTimed(new EvolvedPacMan(), new StarterGhosts(), visual);
+			//			exec.runGameTimed(new FSMPacMan(),new StarterGhosts(),visual);
+			//			exec.runGame(new FSMPacMan(),new StarterGhosts(),visual, 5);
+			//			exec.runGameTimed(new DataCollectorController(new KeyBoardInput()),new StarterGhosts(),visual);
+			//			exec.runGameTimed(new NeuralPacMan(), new StarterGhosts(), visual); 
+			exec.runGame(new EvolvedPacMan(), new StarterGhosts(), visual, 5);
 		}
 		else {
-			double avg = 0;
-			int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
-			int iter = 10;
-			for (int i = 0; i < iter; i++) {
-				ResultBean result = exec.runSingleExperiment(new EvolvedPacMan(), new StarterGhosts());
-				double ppt = result.getPointsPerTime();
-				System.out.println(i + ": Result = " + result.score + ", level: " + (result.getLevel()) + ", time: " + result.totalTime + ", points per time: " + ppt);  
-				avg += result.score;
-				if (result.score > max) {
-					max = result.score;
+			String[] names = new String[] {
+					GeneticAlgorithm.GA_FILE_NAME,
+					"myData/bestGene.txt fitness 17264.0"
+			};
+			for (String s : names) {
+				System.out.println("Running " + s); 
+				double avg = 0;
+				int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
+				int iter = 100;
+				for (int i = 0; i < iter; i++) {
+					ResultBean result = exec.runSingleExperiment(new EvolvedPacMan(s), new StarterGhosts());
+					double ppt = result.getPointsPerTime();
+					System.out.println(i + ": Result = " + result.score + ", level: " + (result.getLevel()) + ", time: " + result.totalTime + ", points per time: " + ppt);  
+					avg += result.score;
+					if (result.score > max) {
+						max = result.score;
+					}
+					if (result.score < min) {
+						min = result.score;
+					} 
 				}
-				if (result.score < min) {
-					min = result.score;
-				} 
+				avg /= iter;
+				System.out.println("Average: " + avg + ", min: " + min + ", max: " + max);
 			}
-			avg /= iter;
-			System.out.println("Average: " + avg + ", min: " + min + ", max: " + max);
 		}
 		/*
 		//run a game in synchronous mode: game waits until controllers respond.
