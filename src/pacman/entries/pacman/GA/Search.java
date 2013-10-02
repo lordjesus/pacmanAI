@@ -23,6 +23,7 @@ public class Search {
 	int timeSinceLastEat;
 	double eatRatio;
 	private double eatWeight;
+	public ArrayList<Integer> outputList;
 	
 	public Search(Game game, int depth, int startIndex) {
 		this.depthLimit = depth;
@@ -216,9 +217,12 @@ public class Search {
 			return MOVE.NEUTRAL;
 		}
 		Node nextNode = bestLeaf;
+		ArrayList<Integer> list = new ArrayList<Integer>();
 		while (nextNode.depth != 1) {
 			nextNode = nextNode.parent;
+			list.add(nextNode.index);
 		}
+		outputList = list;
 		MOVE move = game.getNextMoveTowardsTarget(startIndex, nextNode.index, DM.PATH);
 //		System.out.println("Best value: " + bestValue + ", number of leaves: " + leafNodes.size() + ", MOVE: " + move.name()); 
 		return move;	

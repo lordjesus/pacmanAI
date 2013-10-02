@@ -51,6 +51,7 @@ public class Executor
 	{
 		Executor exec=new Executor();
 
+		
 		/*
 		//run multiple games in batch mode - good for testing.
 		int numTrials=10;
@@ -62,7 +63,8 @@ public class Executor
 			//			exec.runGame(new FSMPacMan(),new StarterGhosts(),visual, 5);
 			//			exec.runGameTimed(new DataCollectorController(new KeyBoardInput()),new StarterGhosts(),visual);
 			//			exec.runGameTimed(new NeuralPacMan(), new StarterGhosts(), visual); 
-			exec.runGame(new EvolvedPacMan(), new StarterGhosts(), visual, 5);
+			exec.runGame(new EvolvedPacMan(), new Legacy2TheReckoning(), visual, 5);
+//			exec.runGameShowSearch(new StarterGhosts(), 20);
 		}
 		else {
 			String[] names = new String[] {
@@ -73,9 +75,9 @@ public class Executor
 				System.out.println("Running " + s); 
 				double avg = 0;
 				int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
-				int iter = 100;
+				int iter = 50;
 				for (int i = 0; i < iter; i++) {
-					ResultBean result = exec.runSingleExperiment(new EvolvedPacMan(s), new StarterGhosts());
+					ResultBean result = exec.runSingleExperiment(new EvolvedPacMan(s), new Legacy2TheReckoning());
 					double ppt = result.getPointsPerTime();
 					System.out.println(i + ": Result = " + result.score + ", level: " + (result.getLevel()) + ", time: " + result.totalTime + ", points per time: " + ppt);  
 					avg += result.score;
@@ -208,6 +210,28 @@ public class Executor
 
 			if(visual)
 				gv.repaint();
+		}
+	}
+
+	public void runGameShowSearch(Controller<EnumMap<GHOST,MOVE>> ghostController,int delay)
+	{
+		Game game=new Game(0);
+		
+		GameView gv=null;
+
+
+		gv=new GameView(game).showGame();
+
+		EvolvedPacMan pacman = new EvolvedPacMan(gv);
+
+		while(!game.gameOver())
+		{
+			game.advanceGame(pacman.getMove(game.copy(),-1),ghostController.getMove(game.copy(),-1));
+
+			try{Thread.sleep(delay);}catch(Exception e){}
+
+
+			gv.repaint();
 		}
 	}
 

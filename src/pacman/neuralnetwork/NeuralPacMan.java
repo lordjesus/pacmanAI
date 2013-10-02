@@ -73,6 +73,8 @@ public class NeuralPacMan extends Controller<MOVE> {
 		List<Double> output = nn.fire(input);
 		MOVE[] possibleMoves = game.getPossibleMoves(game.getPacmanCurrentNodeIndex());
 		
+		
+		
 		return getBestMove(output, possibleMoves); 
 	}
 

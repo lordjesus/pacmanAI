@@ -2,8 +2,10 @@ package pacman.game;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
 import pacman.game.Constants.GHOST;
 import pacman.game.Constants.MOVE;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Color;
@@ -12,6 +14,7 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Vector;
 
@@ -40,6 +43,7 @@ public final class GameView extends JComponent
     private static String imageFileName="";
     public static Vector<DebugPointer> debugPointers=new Vector<DebugPointer>();
     public static Vector<DebugLine> debugLines=new Vector<DebugLine>();
+    public ArrayList<Integer> searchMoves;
     
     /**
      * Instantiates a new game view.
@@ -178,6 +182,7 @@ public final class GameView extends JComponent
         drawGhosts();
         drawLives();
         drawGameInfo();
+        drawSearch();
         
         if(game.gameOver())
         	drawGameOver();
@@ -225,6 +230,16 @@ public final class GameView extends JComponent
           for(int i=0;i<powerPillIndices.length;i++)
           	if(game.isPowerPillStillAvailable(i))
           		bufferGraphics.fillOval(game.getNodeXCood(powerPillIndices[i])*MAG+1,game.getNodeYCood(powerPillIndices[i])*MAG+5,8,8);
+    }
+    
+    public void drawSearch() {
+    	if (searchMoves != null && searchMoves.size() > 0) {
+    		bufferGraphics.setColor(Color.green);
+    		
+    		for(int i=0;i<searchMoves.size();i++)
+              	if(game.isPowerPillStillAvailable(i))
+              		bufferGraphics.fillOval(game.getNodeXCood(searchMoves.get(i))*MAG+1,game.getNodeYCood(searchMoves.get(i))*MAG+5,8,8);
+    	}
     }
     
     /**

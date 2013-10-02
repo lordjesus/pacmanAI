@@ -1,5 +1,6 @@
 package pacman.entries.pacman.GA;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 import pacman.controllers.Controller;
@@ -8,6 +9,7 @@ import pacman.game.Constants.DM;
 import pacman.game.Constants.GHOST;
 import pacman.game.Constants.MOVE;
 import pacman.game.Game;
+import pacman.game.GameView;
 
 public class EvolvedPacMan extends Controller<MOVE> {
 
@@ -24,6 +26,13 @@ public class EvolvedPacMan extends Controller<MOVE> {
 	int edibleTime = 0;
 	int closeEnoughToSearch = 20;
 	int closeEnoughToFlee = 10;
+	ArrayList<Integer> searchMoves;
+	GameView gv;
+	
+	public EvolvedPacMan(GameView gv) {
+		this();
+		this.gv = gv;
+	}
 
 	public EvolvedPacMan() {
 		// Load properties from file
@@ -53,6 +62,7 @@ public class EvolvedPacMan extends Controller<MOVE> {
 
 	@Override
 	public MOVE getMove(Game game, long timeDue) {
+		searchMoves = new ArrayList<Integer>();
 		int current = game.getPacmanCurrentNodeIndex();
 		lastMoves.put(current);
 
@@ -237,7 +247,12 @@ public class EvolvedPacMan extends Controller<MOVE> {
 
 	private MOVE Flee(Game game, int current) {		
 		Search search = new Search(game, fleeDepth, current, fleeBeAfraid, timeSinceLastEat, eatWeight);
-		return search.BeginSearch();
+		MOVE move = search.BeginSearch();
+		searchMoves = search.outputList;
+		if (gv != null) {
+			gv.searchMoves = searchMoves;
+		}
+		return move;
 
 	}
 
@@ -245,8 +260,12 @@ public class EvolvedPacMan extends Controller<MOVE> {
 
 
 		Search search = new Search(game, eatDepth, current, eatBeAfraid, timeSinceLastEat, eatWeight);
-		return search.BeginSearch();
-
+		MOVE move = search.BeginSearch();
+		searchMoves = search.outputList;
+		if (gv != null) {
+			gv.searchMoves = searchMoves;
+		}
+		return move;
 
 	}
 
