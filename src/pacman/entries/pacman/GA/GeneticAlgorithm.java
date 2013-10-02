@@ -16,7 +16,7 @@ public class GeneticAlgorithm {
 	static int CHROMOSOME_SIZE=37;
 	static int POPULATION_SIZE=10;
 	static int EVALUATION_ITERATIONS = 10;
-	static int MAX_GENERATIONS = 10;
+	static int MAX_GENERATIONS = 20;
 	ArrayList<Gene> mPopulation;
 	ArrayList<FitnessBean> fitnessStat;
 
