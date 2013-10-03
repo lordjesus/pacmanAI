@@ -30,6 +30,7 @@ import pacman.entries.pacman.GA.GeneticAlgorithm;
 import pacman.entries.pacman.GA.ResultBean;
 import pacman.game.Game;
 import pacman.game.GameView;
+import pacman.montecarlo.MonteCarloPacMan;
 import pacman.neuralnetwork.NeuralPacMan;
 import static pacman.game.Constants.*;
 
@@ -63,21 +64,23 @@ public class Executor
 			//			exec.runGame(new FSMPacMan(),new StarterGhosts(),visual, 5);
 			//			exec.runGameTimed(new DataCollectorController(new KeyBoardInput()),new StarterGhosts(),visual);
 			//			exec.runGameTimed(new NeuralPacMan(), new StarterGhosts(), visual); 
-			exec.runGame(new EvolvedPacMan(), new Legacy2TheReckoning(), visual, 5);
+//			exec.runGame(new EvolvedPacMan(), new Legacy2TheReckoning(), visual, 5);
 //			exec.runGameShowSearch(new StarterGhosts(), 20);
+			exec.runGameTimed(new MonteCarloPacMan(), new StarterGhosts(), visual);
+//			exec.runGame(new MonteCarloPacMan(), new StarterGhosts(), visual, 1);
 		}
 		else {
 			String[] names = new String[] {
-					GeneticAlgorithm.GA_FILE_NAME,
+					"myData/bestGene fitness 18856.0.txt",					
 					"myData/bestGene.txt fitness 17264.0"
 			};
 			for (String s : names) {
 				System.out.println("Running " + s); 
 				double avg = 0;
 				int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
-				int iter = 50;
+				int iter = 10;
 				for (int i = 0; i < iter; i++) {
-					ResultBean result = exec.runSingleExperiment(new EvolvedPacMan(s), new Legacy2TheReckoning());
+					ResultBean result = exec.runSingleExperiment(new EvolvedPacMan(s), new StarterGhosts());
 					double ppt = result.getPointsPerTime();
 					System.out.println(i + ": Result = " + result.score + ", level: " + (result.getLevel()) + ", time: " + result.totalTime + ", points per time: " + ppt);  
 					avg += result.score;

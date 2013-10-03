@@ -28,5 +28,22 @@ public class Node{
 		return n.length == children.size();
 	}
 	
-	
+	public Node Expand(Game game) {
+		int[] n = game.getNeighbouringNodes(NodePos);
+		Node next = null;
+		for (int x : n) {
+			for (Node c : children) {			
+				if (c.NodePos == x) {
+					break;
+				}
+			}
+			next = new Node();
+			next.NodePos = x;
+			next.parent = this;
+			next.move = game.getMoveToMakeToReachDirectNeighbour(this.NodePos, next.NodePos);
+			this.children.add(next);
+			return next;
+		}
+		return next;
+	}
 }
