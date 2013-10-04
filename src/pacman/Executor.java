@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Random;
 
+import daja.coolcat.EvolvedPacMan;
+import daja.coolcat.GeneticAlgorithm;
+import daja.coolcat.ResultBean;
 import dataRecording.DataCollectorController;
 import pacman.controllers.Controller;
 import pacman.controllers.HumanController;
@@ -25,9 +28,6 @@ import pacman.controllers.examples.RandomPacMan;
 import pacman.controllers.examples.StarterGhosts;
 import pacman.controllers.examples.StarterPacMan;
 import pacman.entries.pacman.FSMPacMan;
-import pacman.entries.pacman.GA.EvolvedPacMan;
-import pacman.entries.pacman.GA.GeneticAlgorithm;
-import pacman.entries.pacman.GA.ResultBean;
 import pacman.game.Game;
 import pacman.game.GameView;
 import pacman.montecarlo.MonteCarloPacMan;
@@ -64,9 +64,9 @@ public class Executor
 			//			exec.runGame(new FSMPacMan(),new StarterGhosts(),visual, 5);
 			//			exec.runGameTimed(new DataCollectorController(new KeyBoardInput()),new StarterGhosts(),visual);
 			//			exec.runGameTimed(new NeuralPacMan(), new StarterGhosts(), visual); 
-//			exec.runGame(new EvolvedPacMan(), new Legacy2TheReckoning(), visual, 5);
+			exec.runGame(new EvolvedPacMan(), new StarterGhosts(), visual, 5);
 //			exec.runGameShowSearch(new StarterGhosts(), 20);
-			exec.runGameTimed(new MonteCarloPacMan(), new StarterGhosts(), visual);
+//			exec.runGameTimed(new MonteCarloPacMan(), new StarterGhosts(), visual);
 //			exec.runGame(new MonteCarloPacMan(), new StarterGhosts(), visual, 1);
 		}
 		else {
@@ -78,9 +78,9 @@ public class Executor
 				System.out.println("Running " + s); 
 				double avg = 0;
 				int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
-				int iter = 10;
+				int iter = 20;
 				for (int i = 0; i < iter; i++) {
-					ResultBean result = exec.runSingleExperiment(new EvolvedPacMan(s), new StarterGhosts());
+					ResultBean result = exec.runSingleExperiment(new EvolvedPacMan(s), new Legacy2TheReckoning());
 					double ppt = result.getPointsPerTime();
 					System.out.println(i + ": Result = " + result.score + ", level: " + (result.getLevel()) + ", time: " + result.totalTime + ", points per time: " + ppt);  
 					avg += result.score;

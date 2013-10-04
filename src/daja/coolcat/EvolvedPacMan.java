@@ -1,17 +1,17 @@
-package pacman.entries.pacman;
+package daja.coolcat;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
-import daja.coolcat.Search;
 import pacman.controllers.Controller;
+import pacman.entries.pacman.MovingWindowList;
 import pacman.game.Constants.DM;
 import pacman.game.Constants.GHOST;
 import pacman.game.Constants.MOVE;
 import pacman.game.Game;
+import pacman.game.GameView;
 
-public class FSMPacMan extends Controller<MOVE> {
+public class EvolvedPacMan extends Controller<MOVE> {
 
 	STATE currentState = STATE.EAT_PILL;
 	int numberOfLives = 0;
@@ -19,9 +19,53 @@ public class FSMPacMan extends Controller<MOVE> {
 	int timeSinceLastEat;
 	double eatWeight = 10;
 	Stack<Integer> movePath;
+	private boolean eatBeAfraid = false;
+	private boolean fleeBeAfraid = true;
+	private int eatDepth = 50;
+	private int fleeDepth = 100;
+	int edibleTime = 0;
+	int closeEnoughToSearch = 20;
+	int closeEnoughToFlee = 10;
+	ArrayList<Integer> searchMoves;
+	GameView gv;
+	
+	public EvolvedPacMan(GameView gv) {
+		this();
+		this.gv = gv;
+	}
+
+	public EvolvedPacMan() {
+		// Load properties from file
+//		PhenoBean bean = new PhenoBean("src/pacman/entries/pacman/GA/bestGene.txt");
+		String filename = "src/" + this.getClass().getPackage().toString().replace("package ", "").replace(".", "/") + "/bestGene.txt"; 
+		System.out.println(filename);
+		PhenoBean bean = new PhenoBean(filename);
+		GetFromPheno(bean); 
+	}
+	
+	public EvolvedPacMan(String filename) {
+		PhenoBean bean = new PhenoBean(filename);
+		GetFromPheno(bean); 
+	}
+	
+	public EvolvedPacMan(PhenoBean pheno) {
+		GetFromPheno(pheno);
+	}
+	
+	public void GetFromPheno(PhenoBean pheno) {
+		this.edibleTime = pheno.edibleTime;
+		this.closeEnoughToSearch = pheno.closeEnoughToSearch;
+		this.closeEnoughToFlee = pheno.closeEnoughToFlee;
+		this.eatWeight = pheno.eatWeight;
+		this.fleeBeAfraid = pheno.fleeBeAfraid;
+		this.eatBeAfraid = pheno.eatBeAfraid;
+		this.fleeDepth = pheno.fleeDepth;
+		this.eatDepth = pheno.eatDepth;
+	}
 
 	@Override
 	public MOVE getMove(Game game, long timeDue) {
+		searchMoves = new ArrayList<Integer>();
 		int current = game.getPacmanCurrentNodeIndex();
 		lastMoves.put(current);
 
@@ -44,37 +88,14 @@ public class FSMPacMan extends Controller<MOVE> {
 			movePath = null;
 		}
 		return GetNextMove(game, current);
-	}
-
-	private MOVE SearchForMove(Game game, int current) {
-
-
-
-		return MOVE.NEUTRAL;
-	}
-
-	private boolean isStuck() {
-		if (lastMoves.size() > 3) {
-			List<Integer> moves = lastMoves.asList();
-			List<Integer> usedMoves = new ArrayList<Integer>();
-			for (int pos : moves) {
-				if (!usedMoves.contains(pos)) {
-					usedMoves.add(pos);
-				}
-			}
-			if (usedMoves.size() < 3) {
-				return true;
-			}
-		}
-		return false;
-	}
+	}	
 
 	private MOVE GetNextMove(Game game, int current) {
 		// Check if PacMan is stuck
-//		if (isStuck()) { 
-////			System.out.println("Was stuck");
-//			return MOVE.NEUTRAL;
-//		}
+		//		if (isStuck()) { 
+		////			System.out.println("Was stuck");
+		//			return MOVE.NEUTRAL;
+		//		}
 		MOVE myMove = MOVE.NEUTRAL;
 		// Determine action based on state
 		switch (currentState) {
@@ -101,13 +122,8 @@ public class FSMPacMan extends Controller<MOVE> {
 	private void GetCurrentState(Game game, int current) {
 		STATE startState = currentState;
 		do {
-//						System.out.println("CurrentState: " + currentState.name());
+			//						System.out.println("CurrentState: " + currentState.name());
 			startState = currentState;
-
-			int edibleTime = 0;
-			int closeEnoughToSearch = 20;
-			int closeEnoughToFlee = 10;
-
 			GHOST closest = null;
 			int minDistance=Integer.MAX_VALUE;
 
@@ -232,69 +248,33 @@ public class FSMPacMan extends Controller<MOVE> {
 		return MOVE.NEUTRAL;
 	}
 
-	private MOVE Flee(Game game, int current) {
-		if (true) {
-			Search search = new Search(game, 100, current, true, timeSinceLastEat, eatWeight);
-			return search.BeginSearch();
-		} else {
-			GHOST closest = null;
-			int minDistance=Integer.MAX_VALUE;
-
-			for(GHOST ghost : GHOST.values()) {
-				if(game.getGhostLairTime(ghost)==0) {
-					int dist = game.getShortestPathDistance(current,game.getGhostCurrentNodeIndex(ghost));
-					if (dist < minDistance) {
-						closest = ghost;
-						minDistance = dist;
-					}
-				}
-			}
-
-			if (closest != null) {
-				if (game.getGhostEdibleTime(closest) == 0) {		
-					return game.getNextMoveAwayFromTarget(game.getPacmanCurrentNodeIndex(),game.getGhostCurrentNodeIndex(closest),DM.PATH); 
-				}
-			}
-			return MOVE.NEUTRAL;
+	private MOVE Flee(Game game, int current) {		
+		Search search = new Search(game, fleeDepth, current, fleeBeAfraid, timeSinceLastEat, eatWeight);
+		MOVE move = search.BeginSearch();
+		searchMoves = search.outputList;
+		if (gv != null) {
+			gv.searchMoves = searchMoves;
 		}
+		return move;
+
 	}
 
 	private MOVE EatPill(Game game, int current) {
-		if (true) {
-			if (false) {
-				if (movePath == null || movePath.empty()) {
-					Search search = new Search(game, 50, current, false, timeSinceLastEat, eatWeight);
-					movePath = search.GetMoveList();
-//					System.out.println("Searching for path");
-				} 
-				int nextPos = movePath.pop();
-//				System.out.println("Go from " + current + " to " + nextPos);
-				return game.getNextMoveTowardsTarget(current, nextPos, DM.PATH); 
-			}
-			else {
-				Search search = new Search(game, 50, current, false, timeSinceLastEat, eatWeight);
-				return search.BeginSearch();
-			}
-		} else {
-			int[] activePills = game.getActivePillsIndices();
-			int closestPill = -1;
-			int closestPillDistance = Integer.MAX_VALUE;
 
-			for (int pill : activePills) {
-				int dist = game.getShortestPathDistance(current,pill);
-				if (dist < closestPillDistance) {
-					closestPill = pill;
-					closestPillDistance = dist;
-				}
-			}
 
-			return game.getNextMoveTowardsTarget(current,closestPill,DM.PATH); 
+		Search search = new Search(game, eatDepth, current, eatBeAfraid, timeSinceLastEat, eatWeight);
+		MOVE move = search.BeginSearch();
+		searchMoves = search.outputList;
+		if (gv != null) {
+			gv.searchMoves = searchMoves;
 		}
+		return move;
+
 	}
 
 	private MOVE EatGhost(Game game, int current) {
 		// Simple - eat closest ghost
-		
+
 		GHOST closest = null;
 		int minDistance=Integer.MAX_VALUE;
 
