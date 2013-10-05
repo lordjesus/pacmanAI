@@ -11,7 +11,7 @@ import pacman.game.Constants.MOVE;
 import pacman.game.Game;
 
 public class MonteCarloSimulator {
-	
+
 	public static final int MAX_SIMULATION_LENGTH = 1000;
 	private Stack<Game> gameStack = new Stack<Game>();
 	private Node rootNode;
@@ -19,13 +19,13 @@ public class MonteCarloSimulator {
 	Controller<EnumMap<GHOST,MOVE>> ghostController = new StarterGhosts();
 	Controller<MOVE> pacManController = new StarterPacMan();
 	long startTime, stopTime;
-	
+
 	int currentLives, currentLevel;
 	/**
 	 * Exploration coefficient
 	 */
 	private float C = (float) (1.0/Math.sqrt(2));
-	
+
 	public MonteCarloSimulator(Game game, long timeDue) {
 		if (timeDue < 0) {
 			timeDue = System.currentTimeMillis() + 40;
@@ -36,7 +36,7 @@ public class MonteCarloSimulator {
 		currentLives = game.getPacmanNumberOfLivesRemaining();
 		currentLevel = game.getCurrentLevel();
 	}
-	
+
 	public MOVE MCTreeSearch() {
 		System.out.println("Tree search");
 		rootNode = new Node();
@@ -44,23 +44,28 @@ public class MonteCarloSimulator {
 		pushToGameStack();
 		try {			
 			advanceGameToJunction();
-			
+			int iter = 0;
 			while (!terminate()) {
+				iter++;
 				pushToGameStack();
 				Node vl = TreePolicy(rootNode);
 				float delta = DefaultPolicy(vl);
-				System.out.println("Reward: " + delta); 
+				//				System.out.println("Reward: " + delta); 
 				Backup(vl, delta);
 				popFromGameStack();
 			}
+			System.out.println("Iterations: " + iter);
 		}
 		finally {
 			popFromGameStack();
 		}
-		
-		return BestChild(rootNode, C).move;
+		Node best = BestChild(rootNode, C);
+		if (best != null) {
+			return best.move;
+		}
+		return MOVE.NEUTRAL;
 	}
-	
+
 	/**
 	 * Tree policy for selecting best child to simulate.
 	 * Advances the game (in subroutines) to be in the state represented 
@@ -79,8 +84,8 @@ public class MonteCarloSimulator {
 		}
 		return current;
 	}
-	
-	
+
+
 	/**
 	 * Expand and advances the game state for the new node
 	 * @param current
@@ -91,11 +96,11 @@ public class MonteCarloSimulator {
 		playMove(child.move);
 		return child;
 	}
-	
+
 	private void playMove(MOVE move) {
 		game.advanceGame(move, ghostController.getMove(game, 0));
 	}
-	
+
 	/**
 	 * Uses UCT value to find the best child, ie. the child with 
 	 * maximum UCT value. Advances the game to be in the state of
@@ -106,9 +111,14 @@ public class MonteCarloSimulator {
 	 * @return the best child
 	 */
 	private Node BestChild(Node current, float c) {
+		//		if (current.equals(rootNode)) {
+		//			for (Node ch : current.children) {
+		//				System.out.println("Child move: " + ch.move);
+		//			}
+		//		}
 		Node bestChild = null;
 		float bestVal = Integer.MIN_VALUE;
-		
+
 		for (Node child : current.children) {
 			float val = UCTvalue(child, C);
 			if (val > bestVal) {
@@ -118,10 +128,11 @@ public class MonteCarloSimulator {
 		}
 		if (bestChild != null) {
 			playMove(bestChild.move);
+//			advanceGameToJunction();
 		}
 		return bestChild;
 	}
-	
+
 	/**
 	 * Calculate UCT value for the best child choosing
 	 * @param n child node of currentNode
@@ -133,7 +144,7 @@ public class MonteCarloSimulator {
 				Math.sqrt((2 * Math.log(n.parent.timesvisited) / n.timesvisited)));
 	}
 
-	
+
 	/**
 	 * Simulation of game (playout) from node vl to the end using pacManController
 	 * @param vl child node to start simulation from
@@ -143,12 +154,20 @@ public class MonteCarloSimulator {
 		// TODO Auto-generated method stub
 		int level = game.getCurrentLevel();
 		int i = 0;
-		while (i++ < MAX_SIMULATION_LENGTH && !game.gameOver() && level == game.getCurrentLevel()) {
+		int length = 4000 - game.getCurrentLevelTime();
+		while (i++ < length && game.getPacmanNumberOfLivesRemaining() == currentLives &&
+				!game.gameOver() && level == game.getCurrentLevel()) {
 			game.advanceGame(pacManController.getMove(game, 0), ghostController.getMove(game, 0));
 		}
-		return game.getScore();
+		int score = game.getScore();
+		if (game.getPacmanNumberOfLivesRemaining() < currentLives) {
+			// Pacman died - negative reward
+//			System.out.println("Ouch");
+			score -= 5000;
+		}
+		return score;
 	}
-		
+
 	/**
 	 * Updates the value of the simulation run on node vl
 	 * with reward delta. All ancestors of vl gets their
@@ -170,16 +189,16 @@ public class MonteCarloSimulator {
 	private MOVE getBestMove() {
 		return MOVE.NEUTRAL;
 	}
-	
+
 	private boolean terminalState() {
 		return game.gameOver() || game.getPacmanNumberOfLivesRemaining() != currentLives || game.getCurrentLevel() != currentLevel;
 	}
-	
+
 	private boolean terminate() {
 		long time = System.currentTimeMillis();
 		return time >= stopTime;
 	}
-	
+
 	/**
 	 * Save a state of the game on top of the stack
 	 * @return the state
@@ -189,7 +208,7 @@ public class MonteCarloSimulator {
 		game = game.copy();
 		return game;
 	}
-	
+
 	/**
 	 * Get the top most game state from the stack
 	 * @return the top most state
@@ -198,21 +217,33 @@ public class MonteCarloSimulator {
 		game = gameStack.pop();
 		return game;
 	}
-	
+
 	private void advanceGameToJunction() {
 		MOVE move = game.getPacmanLastMoveMade();
-		
-		while (!isAtJunction()) {
+
+		while (!isAtJunction(move)) {
 			game.advanceGame(move, ghostController.getMove(game.copy(), -1));
 		}
 	}
-	
+
 	/**
 	 * Checks if pacman is at a junction or game is ended
 	 * @return
 	 */
-	private boolean isAtJunction() {
+	private boolean isAtJunction(MOVE move) {
+		return true;
+//		return game.isJunction(game.getPacmanCurrentNodeIndex()) || isAtWall(move) || game.gameOver();
+	}
+
+	private boolean isAtWall(MOVE move) {
+		MOVE[] possibles = game.getPossibleMoves(game.getPacmanCurrentNodeIndex());
+
+		for (MOVE m : possibles) {
+			if (m == move) {
+				return false;
+			}
+		}
 		return true;
 	}
-	
+
 }

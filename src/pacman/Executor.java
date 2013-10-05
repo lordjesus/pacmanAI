@@ -64,10 +64,10 @@ public class Executor
 			//			exec.runGame(new FSMPacMan(),new StarterGhosts(),visual, 5);
 			//			exec.runGameTimed(new DataCollectorController(new KeyBoardInput()),new StarterGhosts(),visual);
 			//			exec.runGameTimed(new NeuralPacMan(), new StarterGhosts(), visual); 
-			exec.runGame(new EvolvedPacMan(), new StarterGhosts(), visual, 5);
+//			exec.runGame(new EvolvedPacMan(), new StarterGhosts(), visual, 5);
 //			exec.runGameShowSearch(new StarterGhosts(), 20);
 //			exec.runGameTimed(new MonteCarloPacMan(), new StarterGhosts(), visual);
-//			exec.runGame(new MonteCarloPacMan(), new StarterGhosts(), visual, 1);
+			exec.runGame(new MonteCarloPacMan(), new StarterGhosts(), visual, 1);
 		}
 		else {
 			String[] names = new String[] {
